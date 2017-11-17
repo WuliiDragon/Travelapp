@@ -53,6 +53,7 @@ public class HeaderFragment extends Fragment {
         });
         //zyl加的
         //设置图片集合
+        //cxy
         ArrayList images = new ArrayList();
         images.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508064094593&di=2d88c2bfd7f04b3232e5b627f4584bc2&imgtype=0&src=http%3A%2F%2Fepaper.sxncb.com%2Fsxncb%2F20150415%2Fhtml%2Fimg_355_888_209_126.jpg");
         images.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1508064197672&di=c154b806694b7365ca3a2b70fe93295d&imgtype=0&src=http%3A%2F%2Fwww.xinhuanet.com%2Fphoto%2Ftitlepic%2F111923%2F1119235380_1468810150527_title0h.jpg");
