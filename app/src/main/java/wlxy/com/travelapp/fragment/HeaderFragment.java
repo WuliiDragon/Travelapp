@@ -32,7 +32,7 @@ import wlxy.com.travelapp.control.Requester;
 import wlxy.com.travelapp.model.Model;
 import wlxy.com.travelapp.utils.HttpUtils;
 import wlxy.com.travelapp.utils.utils;
-
+//cxy_add
 public class HeaderFragment extends Fragment {
     private ImageView mybuy;
     private ArrayList<Model> dayList;
