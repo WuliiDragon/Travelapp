@@ -32,7 +32,6 @@ import wlxy.com.travelapp.control.Requester;
 import wlxy.com.travelapp.model.Model;
 import wlxy.com.travelapp.utils.HttpUtils;
 import wlxy.com.travelapp.utils.utils;
-//cxy_add
 public class HeaderFragment extends Fragment {
     private ImageView mybuy;
     private ArrayList<Model> dayList;
@@ -41,7 +40,6 @@ public class HeaderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_header, container, false);
 //        mybuy = (ImageView) view.findViewById(R.id.mybuy);
         Banner banner = (Banner) view.findViewById(R.id.banner);
