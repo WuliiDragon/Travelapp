@@ -55,6 +55,7 @@ public class HeaderFragment extends Fragment {
 
         //我是
 
+        //我又加了一些zyl
 
         //设置图片集合
         ArrayList images = new ArrayList();
