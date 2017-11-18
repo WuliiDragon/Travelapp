@@ -1,4 +1,4 @@
-package wlxy.com.travelapp;
+package wlxy.com.travelapp.utils;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import wlxy.com.travelapp.R;
 
 /**
  * Created by guardian on 2017/10/12.

@@ -12,6 +12,9 @@ import wlxy.com.travelapp.R;
 
 /**
  * Created by WLW on 2017/11/17.
+ * 我的中心碎片
+ * @author dragon
+ *
  */
 
 public class MineFragment extends Fragment {

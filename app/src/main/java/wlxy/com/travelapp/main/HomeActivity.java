@@ -20,10 +20,13 @@ import wlxy.com.travelapp.fragment.MineFragment;
 /**
  * Created by WLW on 2017/11/17.
  * @author dragon
+ * 主活动
  */
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
     private List<Fragment> fragments;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
         fragments.add(new HomeFragment());
         fragments.add(new MineFragment());
 
+
+
         //设置默认的碎片
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
@@ -54,6 +59,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
     }
 
 
+
+    //点击item时跳转不同的碎片
     @Override
     public void onTabSelected(int position) {
         if (fragments != null) {

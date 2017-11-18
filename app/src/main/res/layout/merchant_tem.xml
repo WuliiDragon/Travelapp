@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:layout_editor_absoluteY="81dp">
 
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/merchant_img"
         android:layout_width="160dp"
         android:layout_height="90dp"
@@ -63,7 +63,8 @@
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/merchant_img"
-        app:srcCompat="@color/colorPrimary" />
+        android:src="@drawable/icon_local"
+        />
 
     <TextView
         android:id="@+id/merchant_distance"
@@ -84,7 +85,7 @@
         android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/merchant_price"
-        app:srcCompat="@color/theBule" />
+        android:src="@drawable/icon_rmb" />
 
     <TextView
         android:id="@+id/textView7"

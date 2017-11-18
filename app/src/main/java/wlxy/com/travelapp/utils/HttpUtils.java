@@ -17,10 +17,8 @@ import java.util.Map;
  */
 
 public class HttpUtils extends Request<JSONObject> {
-
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
-
 
     public HttpUtils(String url,
                      Map<String, String> params,
@@ -41,6 +39,7 @@ public class HttpUtils extends Request<JSONObject> {
         this.params = params;
     }
 
+    @Override
     protected Map<String, String> getParams()
             throws com.android.volley.AuthFailureError {
         return params;

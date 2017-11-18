@@ -14,34 +14,23 @@ import static android.content.Context.WIFI_SERVICE;
  */
 
 public class utils {
-    public final static String BASE = "http://172.16.120.129:8080/";
-
-//    public static String getBSSID(Context context) {
-//        WifiManager wifi_service = (WifiManager) context.getSystemService(WIFI_SERVICE);
-//        WifiInfo wifiInfo = wifi_service.getConnectionInfo();
-//        String Bssid = wifiInfo.getBSSID();
-//        return Bssid;
-//    }
-
-    public static String getIMEI(Context context) {
-//        TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-//        String id = manager.getDeviceId();
-
-        return "sdasd";
-    }
-
+    public final static String BASE = "http://172.16.120.129:8080";
     public static boolean isNullOrEmpty(Object obj) {
-        if (obj == null)
+        if (obj == null) {
             return true;
+        }
 
-        if (obj instanceof CharSequence)
+        if (obj instanceof CharSequence) {
             return ((CharSequence) obj).length() == 0;
+        }
 
-        if (obj instanceof Collection)
+        if (obj instanceof Collection) {
             return ((Collection) obj).isEmpty();
+        }
 
-        if (obj instanceof Map)
+        if (obj instanceof Map) {
             return ((Map) obj).isEmpty();
+        }
 
         if (obj instanceof Object[]) {
             Object[] object = (Object[]) obj;

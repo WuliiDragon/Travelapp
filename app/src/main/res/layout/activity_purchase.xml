@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp">
             <ImageView
-                android:background="@drawable/dingwei"
+                android:background="@drawable/icon_local"
                 android:layout_marginLeft="15dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"

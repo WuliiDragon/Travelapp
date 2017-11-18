@@ -1,5 +1,9 @@
-package wlxy.com.travelapp.fragment;
+package wlxy.com.travelapp.model;
 
+/**
+ * @author dragon
+ * 数据模型，使用内部类会出错
+ */
 public class MerChantModel {
     private String bname;
     private String address;
@@ -38,13 +42,4 @@ public class MerChantModel {
         this.level = level;
     }
 
-    @Override
-    public String toString() {
-        return "MerChantModel{" +
-                "bname='" + bname + '\'' +
-                ", address='" + address + '\'' +
-                ", image='" + image + '\'' +
-                ", level='" + level + '\'' +
-                '}';
-    }
 }

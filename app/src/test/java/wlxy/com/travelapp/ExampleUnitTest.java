@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 import org.junit.Test;
 
-import wlxy.com.travelapp.fragment.MerChantModel;
+import wlxy.com.travelapp.model.MerChantModel;
 
 import static org.junit.Assert.*;
 
