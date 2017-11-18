@@ -14,7 +14,7 @@ import static android.content.Context.WIFI_SERVICE;
  */
 
 public class utils {
-    public final static String BASE = "http://39.108.63.108/";
+    public final static String BASE = "http://172.16.120.129:8080/";
 
 //    public static String getBSSID(Context context) {
 //        WifiManager wifi_service = (WifiManager) context.getSystemService(WIFI_SERVICE);

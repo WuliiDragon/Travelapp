@@ -1,8 +1,5 @@
 package wlxy.com.travelapp.main;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,7 +33,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.navigation_bar);
 
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.header, "步行"))
+                .addItem(new BottomNavigationItem(R.drawable.header, "首页"))
                 .addItem(new BottomNavigationItem(R.drawable.my, "我的"))
                 .setActiveColor(R.color.colorPrimary)
                 .initialise();
@@ -63,6 +60,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
             if (position < fragments.size()) {
                 android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction ft = manager.beginTransaction();
+
                 Fragment fragment = fragments.get(position);
                 ft.replace(R.id.fragment_content, fragment);
                 ft.commitAllowingStateLoss();
