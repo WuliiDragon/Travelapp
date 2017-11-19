@@ -51,6 +51,7 @@ public class HomeFragment extends Fragment {
     ViewPager viewPager;
     private Timer timer = new Timer();
     private int autoCurrIndex = 0;
+    private Handler handler = new Handler();
 
     @Nullable
     @Override
@@ -74,10 +75,10 @@ public class HomeFragment extends Fragment {
                         JSONArray list = response.getJSONArray("data");
                         for (int i = 0; i < list.length(); i++) {
                             JSONObject item = (JSONObject) list.get(i);
-                            String imgPath = item.getString("imgpath");
+                            final String imgPath = item.getString("imgpath");
                             System.out.println(imgPath + "  imgPath");
                             Log.d("imgPath", imgPath);
-                            /*ImageView nv = new ImageView(view.getContext());
+                           /* ImageView nv = new ImageView(view.getContext());
                             Bitmap bm = new ImageHttp().getImageBitMap(imgPath);
                             nv.setImageBitmap(bm);
                             imageViewList.add(nv);*/
