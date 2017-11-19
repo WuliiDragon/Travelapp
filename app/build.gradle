@@ -46,7 +46,7 @@ dependencies {
     compile 'com.android.volley:volley:1.0.0'
 
     compile 'com.ashokvarma.android:bottom-navigation-bar:0.9.5'
-
+    compile 'com.jude:rollviewpager:1.2.9'
 
 
 }
