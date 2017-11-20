@@ -1,13 +1,14 @@
 package wlxy.com.travelapp.fragment;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.CarouselAdapter;
@@ -46,12 +48,55 @@ public class HomeFragment extends Fragment {
     private ListView merChantListView;
     private final int RIGHTSTATUS = 200;
     private ArrayList<MerChantModel> merChantModelList;
-    private int pageNum = 0;
     private MerChantAdapter merChantAdapter;
-    ViewPager viewPager;
-    private Timer timer = new Timer();
-    private int autoCurrIndex = 0;
-    private Handler handler = new Handler();
+
+    //统计下载了几张图片
+    int n = 0;
+    //统计当前viewpager轮播到第几页
+    int p = 0;
+    private ViewPager viewPager;
+    //准备好三张网络图片的地址
+    private String imageUrl[] = new String[]{"http://172.16.120.129:8080/img/2017-11/a.jpg",
+            "http://172.16.120.129:8080/img/2017-11/b.jpg",
+            "http://172.16.120.129:8080/img/2017-11/c.jpg"};
+    //装载下载图片的集合
+    private List<ImageView> data;
+    //控制图片是否开始轮播的开关,默认关的
+    private boolean isStart = false;
+    //开始图片轮播的线程
+    private MyThread t;
+
+    private Handler mHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case 0:
+                    n++;
+                    Bitmap bitmap = (Bitmap) msg.obj;
+                    ImageView iv = new ImageView(getActivity());
+                    iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    iv.setImageBitmap(bitmap);
+                    //把图片添加到集合里
+                    data.add(iv);
+                    //当接收到第三张图片的时候，设置适配器,
+                    if (n == imageUrl.length) {
+                        viewPager.setAdapter(new CarouselAdapter(data, getActivity()));
+                        //把开关打开
+                        isStart = true;
+                        t = new MyThread();
+                        //启动轮播图片线程
+                        t.start();
+                    }
+                    break;
+                case 1:
+                    //接受到的线程发过来的p数字
+                    int page = (Integer) msg.obj;
+                    viewPager.setCurrentItem(page);
+                    break;
+            }
+        }
+
+        ;
+    };
 
     @Nullable
     @Override
@@ -62,48 +107,15 @@ public class HomeFragment extends Fragment {
         merChantAdapter = new MerChantAdapter(getActivity(), R.layout.merchant_tem, merChantModelList);
         merChantListView.setAdapter(merChantAdapter);
         View v = inflater.inflate(R.layout.view_page, container, false);
-        viewPager = (ViewPager) v.findViewById(R.id.headviewpager);
-        CarouselAdapter carouselAdapter = new CarouselAdapter();
-        final List<ImageView> imageViewList = new ArrayList<ImageView>();
-        //发送HTTP请求请求轮播图集合
-        HttpUtils httpUtil = new HttpUtils(utils.BASE + "/businessCarousel/findAll.action", null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    int status = response.getInt("status");
-                    if (status == RIGHTSTATUS) {
-                        JSONArray list = response.getJSONArray("data");
-                        for (int i = 0; i < list.length(); i++) {
-                            JSONObject item = (JSONObject) list.get(i);
-                            final String imgPath = item.getString("imgpath");
-                            System.out.println(imgPath + "  imgPath");
-                            Log.d("imgPath", imgPath);
-                           /* ImageView nv = new ImageView(view.getContext());
-                            Bitmap bm = new ImageHttp().getImageBitMap(imgPath);
-                            nv.setImageBitmap(bm);
-                            imageViewList.add(nv);*/
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        viewPager = (ViewPager) v.findViewById(R.id.vp);
+        merChantListView.addHeaderView(v);
+        //构造一个存储照片的集合
+        data = new ArrayList<ImageView>();
+        //从网络上把图片下载下来
+        for (int i = 0; i < imageUrl.length; i++) {
+            getImageFromNet(imageUrl[i]);
+        }
 
-            }
-        });
-        AppController.getInstance().addToRequestQueue(httpUtil);
-
-        //给viewPager中的Adapter设置轮播图集合
-        carouselAdapter.images = imageViewList;
-        //给viewPager中设置Adpapter
-        viewPager.setAdapter(carouselAdapter);
-        merChantListView.addHeaderView(viewPager);
-        //轮播图数量
-        final int num = imageViewList.size();
-        System.out.println("num:" + num);
         //获取ListView数据
         HttpUtils httpUtils = new HttpUtils(utils.BASE + "/business/findAll.action", null, new Response.Listener<JSONObject>() {
             @Override
@@ -131,31 +143,6 @@ public class HomeFragment extends Fragment {
             }
         });
         AppController.getInstance().addToRequestQueue(httpUtils);
-
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Message message = new Message();
-                if (autoCurrIndex == num) {
-                    autoCurrIndex = 0;
-                } else {
-                    autoCurrIndex++;
-                }
-                message.arg1 = autoCurrIndex;
-                mHandler.sendMessage(message);
-            }
-
-            private Handler mHandler = new Handler() {
-                public void handleMessage(Message msg) {
-                    if (msg.arg1 != 0) {
-                        viewPager.setCurrentItem(msg.arg1);
-                    } else {
-                        //false 当从末页调到首页是，不显示翻页动画效果，
-                        viewPager.setCurrentItem(msg.arg1, true);
-                    }
-                }
-            };
-        }, 3000, 2000);
         return view;
     }
 
@@ -164,5 +151,50 @@ public class HomeFragment extends Fragment {
         super.onStart();
     }
 
+    private void getImageFromNet(final String imagePath) {
+        new Thread() {
+            public void run() {
+                try {
+                    URL url = new URL(imagePath);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    con.setRequestMethod("GET");
+                    con.setConnectTimeout(10 * 1000);
+                    InputStream is = con.getInputStream();
+                    Bitmap bitmap = BitmapFactory.decodeStream(is);
+                    Message message = new Message();
+                    message.what = 0;
+                    message.obj = bitmap;
+                    mHandler.sendMessage(message);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            ;
+        }.start();
+
+    }
+
+    //控制图片轮播
+    class MyThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            while (isStart) {
+                Message message = new Message();
+                message.what = 1;
+                message.obj = p;
+                mHandler.sendMessage(message);
+                try {
+                    //睡眠3秒,在isStart为真的情况下，一直每隔三秒循环
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                p++;
+            }
+        }
+    }
 
 }

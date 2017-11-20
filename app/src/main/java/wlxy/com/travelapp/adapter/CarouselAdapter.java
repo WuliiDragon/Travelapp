@@ -1,46 +1,63 @@
 package wlxy.com.travelapp.adapter;
 
+import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.ImageView;
 
 import java.util.List;
 
-/**
- * Created by DT on 2017/11/18.
- */
-
 public class CarouselAdapter extends PagerAdapter {
-    public List<ImageView> images;
+    private List<ImageView> data;
+    Context context;
 
-    // 获取要滑动的控件的数量，在这里我们以滑动的广告栏为例，那么这里就应该是展示的广告图片的ImageView数量
-    @Override
-    public int getCount() {
-        return images.size();
+    public CarouselAdapter(List<ImageView> data, Context context) {
+        this.data = data;
+        this.context = context;
     }
 
-    // 来判断显示的是否是同一张图片，这里我们将两个参数相比较返回即可
+    @Override
+    public int getCount() {
+        //返回一个无穷大的值，
+        return Integer.MAX_VALUE;
+    }
+
     @Override
     public boolean isViewFromObject(View arg0, Object arg1) {
+
         return arg0 == arg1;
     }
 
-    // PagerAdapter只缓存三张要显示的图片，如果滑动的图片超出了缓存的范围，就会调用这个方法，将图片销毁
     @Override
-    public void destroyItem(ViewGroup view, int position, Object object) {
-        view.removeView(images.get(position));
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        //注意，这里什么也不做!!!
+
     }
 
-    // 当要显示的图片可以进行缓存的时候，会调用这个方法进行显示图片的初始化，我们将要显示的ImageView加入到ViewGroup中，然后作为返回值返回即可
     @Override
-    public Object instantiateItem(ViewGroup view, int position) {
-        // view.addView(images.get(position));
-       /* if (view != null) {
-            view.removeView(images.get(position));
-        } else {
-        }*/
-        super.instantiateItem(view, position);
-        return images.get(position);
+    public Object instantiateItem(ViewGroup container, int position) {
+        ImageView image = data.get(position % data.size());
+        //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
+        ViewParent vp = image.getParent();
+        if (vp != null) {
+            ViewGroup vg = (ViewGroup) vp;
+            vg.removeView(image);
+        }
+        image.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.d("123", "click");
+                //Toast.makeText(context, "点击了图片", 0).show();
+            }
+        });
+        container.addView(data.get(position % data.size()));
+        return data.get(position % data.size());
     }
+
+
 }
