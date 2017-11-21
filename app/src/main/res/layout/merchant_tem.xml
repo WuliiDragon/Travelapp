@@ -63,7 +63,7 @@
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/merchant_img"
-        android:src="@drawable/icon_local"
+        android:src="@drawable/iconlocal"
         />
 
     <TextView
@@ -85,7 +85,7 @@
         android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/merchant_price"
-        android:src="@drawable/icon_rmb" />
+        android:src="@drawable/iconrmb" />
 
     <TextView
         android:id="@+id/textView7"

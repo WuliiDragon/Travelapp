@@ -51,24 +51,36 @@ public class HomeFragment extends Fragment {
     private final int RIGHTSTATUS = 200;
     private ArrayList<MerChantModel> merChantModelList;
     private MerChantAdapter merChantAdapter;
-
-    //统计下载了几张图片
+    /**
+     * 统计下载了几张图片
+     */
     int n = 0;
-    //统计当前viewpager轮播到第几页
+    /**
+     * 统计当前viewpager轮播到第几页
+     */
     int p = 0;
     private ViewPager viewPager;
-    //准备好三张网络图片的地址
-    private String imageUrl[] = new String[]{"http://172.16.120.129:8080/img/2017-11/a.jpg",
+    /**
+     * 准备好三张网络图片的地址
+     */
+    private String [] imageUrl = new String[]{"http://172.16.120.129:8080/img/2017-11/a.jpg",
             "http://172.16.120.129:8080/img/2017-11/b.jpg",
             "http://172.16.120.129:8080/img/2017-11/c.jpg"};
-    //装载下载图片的集合
+    /**
+     * 装载下载图片的集合
+     */
     private List<ImageView> data;
-    //控制图片是否开始轮播的开关,默认关的
+    /**
+     * 控制图片是否开始轮播的开关,默认关的
+     */
     private boolean isStart = false;
-    //开始图片轮播的线程
-    private MyThread t;
 
+    /**
+     * 开始图片轮播的线程
+     */
+    private MyThread t;
     private Handler mHandler = new Handler() {
+        @Override
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 0:
@@ -96,8 +108,6 @@ public class HomeFragment extends Fragment {
                     break;
             }
         }
-
-        ;
     };
 
 
@@ -223,7 +233,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void getImageFromNet(final String imagePath) {
+
         new Thread() {
+            @Override
             public void run() {
                 try {
                     URL url = new URL(imagePath);
@@ -239,7 +251,6 @@ public class HomeFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }.start();
 
@@ -247,7 +258,9 @@ public class HomeFragment extends Fragment {
 
     }
 
-    //控制图片轮播
+    /**
+     * 控制图片轮播
+     */
     class MyThread extends Thread {
         @Override
         public void run() {

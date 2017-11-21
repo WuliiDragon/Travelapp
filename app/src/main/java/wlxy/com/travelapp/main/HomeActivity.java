@@ -93,18 +93,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
 
     }
 
-//    public void switchContent(Fragment from, Fragment to, int position) {
-//        if (mContent != to) {
-//            mContent = to;
-//            android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();
-//            if (!to.isAdded()) { // 先判断是否被add过
-//                transaction.hide(from)
-//                        .add(R.id.fragment_content, to, tags[position]).commit(); // 隐藏当前的fragment，add下一个到Activity中
-//            } else {
-//                transaction.hide(from).show(to).commit(); // 隐藏当前的fragment，显示下一个
-//            }
-//        }
-//    }
     @Override
     public void onTabUnselected(int position) {
 
