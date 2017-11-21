@@ -1,6 +1,7 @@
 package wlxy.com.travelapp.fragment;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,17 +100,11 @@ public class HomeFragment extends Fragment {
         ;
     };
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.home_layout, container, false);
-        merChantListView = (ListView) view.findViewById(R.id.merchant_listView);
-        merChantModelList = new ArrayList<MerChantModel>();
-        merChantAdapter = new MerChantAdapter(getActivity(), R.layout.merchant_tem, merChantModelList);
-        merChantListView.setAdapter(merChantAdapter);
-        View v = inflater.inflate(R.layout.view_page, container, false);
-        viewPager = (ViewPager) v.findViewById(R.id.vp);
-        merChantListView.addHeaderView(v);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.d("RightFragment","onAttach");
         //构造一个存储照片的集合
         data = new ArrayList<ImageView>();
         //从网络上把图片下载下来
@@ -143,12 +139,87 @@ public class HomeFragment extends Fragment {
             }
         });
         AppController.getInstance().addToRequestQueue(httpUtils);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.home_layout, container, false);
+
+        merChantListView = (ListView) view.findViewById(R.id.merchant_listView);
+        merChantModelList = new ArrayList<MerChantModel>();
+        merChantAdapter = new MerChantAdapter(getActivity(), R.layout.merchant_tem, merChantModelList);
+        merChantListView.setAdapter(merChantAdapter);
+
+
+        View view_page = inflater.inflate(R.layout.view_page, container, false);
+        viewPager = (ViewPager) view_page.findViewById(R.id.vp);
+        merChantListView.addHeaderView(view_page);
+
+        Log.d("RightFragment","onCreateView");
         return view;
     }
 
+
+
+
+
     @Override
-    public void onStart() {
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        Log.d("RightFragment","onCreate");
+    }
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("RightFragment","onActivityCreated");
+    }
+
+    @Override
+    public void onStart()
+    {
         super.onStart();
+        Log.d("RightFragment","onStart");
+    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        Log.d("RightFragment","onResume");
+    }
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        Log.d("RightFragment","onPause");
+    }
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        Log.d("RightFragment","onStop");
+    }
+    @Override
+    public void onDestroyView()
+    {
+        super.onDestroyView();
+        Log.d("RightFragment","onDestroyView");
+    }
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Log.d("RightFragment","onDestroy");
+    }
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+        Log.d("RightFragment","onDetach");
     }
 
     private void getImageFromNet(final String imagePath) {
@@ -170,9 +241,9 @@ public class HomeFragment extends Fragment {
                 }
 
             }
-
-            ;
         }.start();
+
+
 
     }
 
@@ -196,5 +267,9 @@ public class HomeFragment extends Fragment {
             }
         }
     }
+
+
+
+
 
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/loginback">
     <LinearLayout
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="200dp">
         <ImageView
             android:src="@drawable/my"
             android:layout_width="100dp"
@@ -13,58 +14,80 @@
             />
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="20dp"
+        android:background="@drawable/layout_coner"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
-        <TextView
-            android:text="用户名:"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/name"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_weight="9" />
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/Number"
+            android:textSize="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:textColor="@color/theGray"
+            android:hint="请输入您的手机号"
+            android:text="13689113231"/>
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/view_divider2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#b7b7b6" />
+
+        <EditText
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:textSize="13dp"
+            android:hint="请输入您的密码"
+            android:textColor="@color/theGray"
+            android:text="123456"
+            android:layout_marginBottom="5dp"/>
     </LinearLayout>
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
-
-        <TextView
-            android:text="密   码:"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_weight="9" />
-    </LinearLayout>
+        android:layout_height="wrap_content">
     <Button
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="40dp"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:id="@+id/login"
-        android:textSize="20dp"
-        android:text="登 录"/>
+        android:id="@+id/turn_to_register"
+        android:textSize="15dp"
+        android:background="@drawable/layoutbutton_coner"
+        android:textColor="#fbfafa"
+        android:text="注 册"/>
+        <Button
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/login_btn"
+            android:textSize="15dp"
+            android:background="@drawable/layoutbutton_coner"
+            android:textColor="#fbfafa"
+            android:text="登 录"/>
 
+    </LinearLayout>
+    <TextView
+        android:id="@+id/ChangePassword"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="忘记密码"/>
 
 </LinearLayout>

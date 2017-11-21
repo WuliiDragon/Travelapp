@@ -8,6 +8,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
+import wlxy.com.travelapp.main.LoginActivity;
+
 /**
  * Created by WLW on 2017/11/18.
  *

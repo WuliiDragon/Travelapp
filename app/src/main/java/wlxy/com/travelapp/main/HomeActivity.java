@@ -50,11 +50,12 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
         fragments.add(new MineFragment());
 
 
-
         //设置默认的碎片
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_content, fragments.get(0));
+
+        transaction.add(R.id.fragment_content, fragments.get(0));
+        transaction.show(fragments.get(0));
         transaction.commit();
     }
 
@@ -63,18 +64,47 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
     //点击item时跳转不同的碎片
     @Override
     public void onTabSelected(int position) {
-        if (fragments != null) {
-            if (position < fragments.size()) {
-                android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-                android.support.v4.app.FragmentTransaction ft = manager.beginTransaction();
-
-                Fragment fragment = fragments.get(position);
-                ft.replace(R.id.fragment_content, fragment);
-                ft.commitAllowingStateLoss();
-            }
+        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction ft = manager.beginTransaction();
+        for (Fragment f :manager.getFragments()){
+            System.out.print(f.toString());
         }
+
+        if (position==0){
+            if (!manager.getFragments().contains(fragments.get(0))){
+                ft.add(R.id.fragment_content,fragments.get(0));
+            }
+
+            ft.hide(fragments.get(1));
+            ft.show(fragments.get(0));
+            ft.commit();
+        }
+        if (position==1){
+            if (!manager.getFragments().contains(fragments.get(1))){
+                ft.add(R.id.fragment_content,fragments.get(1));
+            }
+            ft.hide(fragments.get(0));
+            ft.show(fragments.get(1));
+            ft.commit();
+        }
+
+
+
+
     }
 
+//    public void switchContent(Fragment from, Fragment to, int position) {
+//        if (mContent != to) {
+//            mContent = to;
+//            android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();
+//            if (!to.isAdded()) { // 先判断是否被add过
+//                transaction.hide(from)
+//                        .add(R.id.fragment_content, to, tags[position]).commit(); // 隐藏当前的fragment，add下一个到Activity中
+//            } else {
+//                transaction.hide(from).show(to).commit(); // 隐藏当前的fragment，显示下一个
+//            }
+//        }
+//    }
     @Override
     public void onTabUnselected(int position) {
 
