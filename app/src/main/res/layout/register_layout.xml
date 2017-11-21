@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/register_phone_number"
+        android:layout_width="260dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="请输入手机号"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/register_code"
+        android:layout_width="123dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintTop_toBottomOf="@+id/register_phone_number"
+        tools:layout_editor_absoluteX="62dp" />
+
+    <Button
+        android:id="@+id/register_send"
+        android:layout_width="133dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="发送验证码"
+        app:layout_constraintStart_toEndOf="@+id/register_code"
+        app:layout_constraintTop_toBottomOf="@+id/register_phone_number" />
+
+    <EditText
+        android:id="@+id/register_onepass"
+        android:layout_width="261dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="请输入密码"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/register_code"
+        tools:layout_editor_absoluteX="62dp" />
+
+    <EditText
+        android:id="@+id/register_towpass"
+        android:layout_width="264dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="请再次输入密码"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/register_onepass"
+        tools:layout_editor_absoluteX="62dp" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="265dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:text="注册"
+        app:layout_constraintTop_toBottomOf="@+id/register_towpass"
+        tools:layout_editor_absoluteX="62dp" />
+</android.support.constraint.ConstraintLayout>
