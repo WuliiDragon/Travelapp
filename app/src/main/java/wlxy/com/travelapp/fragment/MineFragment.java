@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
 
@@ -37,14 +38,14 @@ import static wlxy.com.travelapp.utils.utils.BASE;
 
 public class MineFragment extends Fragment implements View.OnClickListener {
     private NetworkImageView userImage;
-    private EditText userName;
+    private TextView userName;
     private Button loginOut;
     private SharedPreferences sharedPreferences;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mine_layout, container, false);
         userImage= (NetworkImageView) view.findViewById(R.id.user_image);
-        userName= (EditText) view.findViewById(R.id.user_name);
+        userName= (TextView) view.findViewById(R.id.user_name);
         loginOut= (Button) view.findViewById(R.id.loginout);
 
 
