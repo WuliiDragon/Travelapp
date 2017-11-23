@@ -2,6 +2,7 @@ package wlxy.com.travelapp.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -34,6 +36,7 @@ import java.util.List;
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.CarouselAdapter;
 import wlxy.com.travelapp.adapter.MerChantAdapter;
+import wlxy.com.travelapp.main.MerChantDetailActivity;
 import wlxy.com.travelapp.model.MerChantModel;
 import wlxy.com.travelapp.utils.AppController;
 import wlxy.com.travelapp.utils.HttpUtils;
@@ -149,22 +152,36 @@ public class HomeFragment extends Fragment {
             }
         });
         AppController.getInstance().addToRequestQueue(httpUtils);
+
+
+
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_layout, container, false);
 
         merChantListView = (ListView) view.findViewById(R.id.merchant_listView);
         merChantModelList = new ArrayList<MerChantModel>();
-        merChantAdapter = new MerChantAdapter(getActivity(), R.layout.merchant_tem, merChantModelList);
+        merChantAdapter = new MerChantAdapter(getActivity(), R.layout.item_merchant, merChantModelList);
         merChantListView.setAdapter(merChantAdapter);
 
 
         View view_page = inflater.inflate(R.layout.view_page, container, false);
         viewPager = (ViewPager) view_page.findViewById(R.id.vp);
         merChantListView.addHeaderView(view_page);
+        merChantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MerChantModel info = merChantModelList.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putString("bid", info.getBid());
+                Intent intent = new Intent(getActivity(),MerChantDetailActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         Log.d("RightFragment","onCreateView");
         return view;

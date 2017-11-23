@@ -10,6 +10,34 @@ public class MerChantModel {
     private String image;
     private String level;
 
+    private String bid;
+    private String latitude;
+    private String longitude;
+
+    public String getBid() {
+        return bid;
+    }
+
+    public void setBid(String bid) {
+        this.bid = bid;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
     public String getBname() {
         return bname;
     }
