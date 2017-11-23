@@ -7,7 +7,6 @@ import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -22,36 +21,35 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import wlxy.com.travelapp.adapter.CarouselAdapter;
+import wlxy.com.travelapp.adapter.BusinessCarouselAdapter;
 
 /**
  * Created by DT on 2017/11/19.
  */
 
-public class CarouselImg {
+public class BusinessCarouselImg {
     int n = 0;
     int p = 0;
     private ViewPager viewPager;
-    private ListView merChantListView;
     FragmentActivity activity;
     private String[] imageUrl;
-    private List<String> bid;
     private List<ImageView> data;
     private boolean isStart = false;
     private MyThreads t;
     private final int RIGHTSTATUS = 200;
+    private String bid;
+    private boolean hasImg = false;
 
-    public CarouselImg(ViewPager viewPager, ListView merChantListView, FragmentActivity activity) {
+    public BusinessCarouselImg(ViewPager viewPager, FragmentActivity activity, String bid) {
         this.viewPager = viewPager;
-        this.merChantListView = merChantListView;
         this.activity = activity;
+        this.bid = bid;
     }
 
     public void init() {
         data = new ArrayList<ImageView>();
-        bid = new ArrayList<String>();
         //从网络上把图片下载下来
-        HttpUtils httpUtil = new HttpUtils(utils.BASE + "/businessCarousel/findAll.action", null, new Response.Listener<JSONObject>() {
+        HttpUtils httpUtil = new HttpUtils(utils.BASE + "/businessImg/findAll.action" + "?bid=" + bid, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -61,12 +59,16 @@ public class CarouselImg {
                         imageUrl = new String[list.length()];
                         for (int i = 0; i < list.length(); i++) {
                             JSONObject item = (JSONObject) list.get(i);
-                            String imgPath = utils.BASE + item.getString("imgpath");
-                            bid.add(item.getString("bid"));
+                            String imgPath = utils.BASE + item.getString("imgPath");
                             imageUrl[i] = imgPath;
                         }
                         for (int i = 0; i < imageUrl.length; i++) {
                             getImageFromNet(imageUrl[i]);
+                        }
+                        if (list.length() == 0) {
+                            getImageFromNet(utils.BASE + utils.DefImg);
+                        } else {
+                            hasImg = true;
                         }
                     }
                 } catch (JSONException e) {
@@ -105,7 +107,7 @@ public class CarouselImg {
 
     private Handler mHandler = new Handler() {
         @Override
-        public void handleMessage(android.os.Message msg) {
+        public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
                     n++;
@@ -114,11 +116,13 @@ public class CarouselImg {
                     iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     iv.setImageBitmap(bitmap);
                     data.add(iv);
+                    if (!hasImg) {
+                        BusinessCarouselAdapter bca = new BusinessCarouselAdapter(data, activity);
+                        viewPager.setAdapter(bca);
+                    }
                     if (n == imageUrl.length) {
-                        CarouselAdapter ca = new CarouselAdapter(data, activity);
-                        ca.bid = bid;
-                        viewPager.setAdapter(ca);
-                        merChantListView.addHeaderView(viewPager);
+                        BusinessCarouselAdapter bca = new BusinessCarouselAdapter(data, activity);
+                        viewPager.setAdapter(bca);
                         isStart = true;
                         t = new MyThreads();
                         t.start();

@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
-
 import com.alibaba.fastjson.JSON;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
@@ -22,16 +18,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.MerChantDetailAdapter;
-import wlxy.com.travelapp.adapter.TicketAdapter;
 import wlxy.com.travelapp.fragment.MineFragment;
 import wlxy.com.travelapp.fragment.TicketFragment;
-import wlxy.com.travelapp.model.MerChantModel;
 import wlxy.com.travelapp.model.TicketModel;
 import wlxy.com.travelapp.utils.AppController;
+import wlxy.com.travelapp.utils.BusinessCarouselImg;
 import wlxy.com.travelapp.utils.HttpUtils;
 import wlxy.com.travelapp.utils.utils;
 
@@ -43,6 +37,7 @@ import wlxy.com.travelapp.utils.utils;
 public class MerChantDetailActivity extends AppCompatActivity {
     private TabLayout tabBarTitle;
     private ViewPager tabBarViewPager;
+    private ViewPager CarouseVp;
     private String bid;
     private ArrayList<TicketModel> ticketModelList;
 
@@ -79,7 +74,8 @@ public class MerChantDetailActivity extends AppCompatActivity {
         tabBarViewPager.setAdapter(merChantDetailAdapter);
         tabBarTitle.setupWithViewPager(tabBarViewPager, true);
         tabBarTitle.setTabMode(TabLayout.MODE_FIXED);
-
+        CarouseVp = (ViewPager) findViewById(R.id.CarouseVp);
+        new BusinessCarouselImg(CarouseVp, this, bid).init();
 
         HttpUtils request = new HttpUtils(utils.BASE + "/business/findById.action?bid=" + "2511150102", null, new Response.Listener<JSONObject>() {
             @Override

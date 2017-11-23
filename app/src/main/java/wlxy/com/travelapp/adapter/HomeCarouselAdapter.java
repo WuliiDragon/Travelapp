@@ -14,12 +14,12 @@ import java.util.List;
 
 import wlxy.com.travelapp.main.MerChantDetailActivity;
 
-public class CarouselAdapter extends PagerAdapter {
+public class HomeCarouselAdapter extends PagerAdapter {
     private List<ImageView> data;
     public List<String> bid;
     Context context;
 
-    public CarouselAdapter(List<ImageView> data, Context context) {
+    public HomeCarouselAdapter(List<ImageView> data, Context context) {
         this.data = data;
         this.context = context;
     }

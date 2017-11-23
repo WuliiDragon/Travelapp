@@ -29,7 +29,7 @@ import wlxy.com.travelapp.adapter.MerChantAdapter;
 import wlxy.com.travelapp.main.MerChantDetailActivity;
 import wlxy.com.travelapp.model.MerChantModel;
 import wlxy.com.travelapp.utils.AppController;
-import wlxy.com.travelapp.utils.CarouselImg;
+import wlxy.com.travelapp.utils.HomeCarouselImg;
 import wlxy.com.travelapp.utils.HttpUtils;
 import wlxy.com.travelapp.utils.utils;
 
@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         View view_page = inflater.inflate(R.layout.view_page, container, false);
         viewPager = (ViewPager) view_page.findViewById(R.id.vp);
         //初始化轮播图
-        new CarouselImg(viewPager, merChantListView, getActivity()).init();
+        new HomeCarouselImg(viewPager, merChantListView, getActivity()).init();
         //listView设置点击事件
         merChantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

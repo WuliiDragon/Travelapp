@@ -1,13 +1,7 @@
 package wlxy.com.travelapp.utils;
 
-import android.content.Context;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-
 import java.util.Collection;
 import java.util.Map;
-
-import static android.content.Context.WIFI_SERVICE;
 
 /**
  * Created by guardian on 2017/10/15.
@@ -15,6 +9,8 @@ import static android.content.Context.WIFI_SERVICE;
 
 public class utils {
     public final static String BASE = "http://172.16.120.129:8080";
+    public final static String DefImg = "/defImg.jpg";
+
     public static boolean isNullOrEmpty(Object obj) {
         if (obj == null) {
             return true;
