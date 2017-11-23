@@ -4,37 +4,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#e9e0e0"
+        tools:alpha="0.4" />
     <LinearLayout
+
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@color/colorAccent">
-    <LinearLayout
+        android:layout_height="100dp"
+        android:background="#f8f8f8">
+    <RelativeLayout
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
         <com.android.volley.toolbox.NetworkImageView
-            android:background="@drawable/my"
-            android:layout_marginLeft="10dp"
             android:id="@+id/user_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:layout_marginTop="8dp" />
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/my"
+            android:gravity="center" />
 
         <TextView
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
             android:id="@+id/user_name"
-            android:layout_marginLeft="20dp"
-            android:layout_width="200dp"
-            android:layout_height="40dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="35dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/user_image"
+            android:layout_toRightOf="@+id/user_image"
+            android:text="登录/注册"
+            android:textColor="#fe44"
+            android:textSize="10dp" />
+    </RelativeLayout>
     </LinearLayout>
-    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#e9e0e0"
+        tools:alpha="0.4" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,14 +61,15 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:gravity="center"
+
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
@@ -67,7 +87,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
                     android:text="我的订单"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -78,8 +98,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="right|center_vertical"
                     android:layout_weight="1"
                     android:src="@drawable/icongo" />
@@ -93,21 +113,25 @@
             tools:alpha="0.4" />
     </LinearLayout>
 
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e9e0e0"
+        tools:alpha="0.4" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
@@ -125,7 +149,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
                     android:text="我的信息"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -136,8 +160,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="right|center_vertical"
                     android:layout_weight="1"
                     android:src="@drawable/icongo" />
@@ -150,21 +174,27 @@
             android:background="#e9e0e0"
             tools:alpha="0.4" />
     </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#e9e0e0"
+        tools:alpha="0.4" />
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
@@ -182,7 +212,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
                     android:text="我的设置"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -193,8 +223,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="right|center_vertical"
                     android:layout_weight="1"
                     android:src="@drawable/icongo" />
@@ -207,6 +237,11 @@
             android:background="#e9e0e0"
             tools:alpha="0.4" />
     </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e9e0e0"
+        tools:alpha="0.4" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -214,14 +249,14 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
@@ -239,7 +274,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
                     android:text="意见反馈"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -250,8 +285,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="right|center_vertical"
                     android:layout_weight="1"
                     android:src="@drawable/icongo" />
@@ -264,9 +299,5 @@
             android:background="#e9e0e0"
             tools:alpha="0.4" />
     </LinearLayout>
-    <Button
-        android:text="退出登录"
-        android:id="@+id/loginout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
+
 </LinearLayout>

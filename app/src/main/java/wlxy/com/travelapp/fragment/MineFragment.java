@@ -32,8 +32,8 @@ import static wlxy.com.travelapp.utils.utils.BASE;
 /**
  * Created by WLW on 2017/11/17.
  * 我的中心碎片
- * @author dragon
  *
+ * @author dragon
  */
 
 public class MineFragment extends Fragment implements View.OnClickListener {
@@ -41,29 +41,28 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView userName;
     private Button loginOut;
     private SharedPreferences sharedPreferences;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mine_layout, container, false);
-        userImage= (NetworkImageView) view.findViewById(R.id.user_image);
-        userName= (TextView) view.findViewById(R.id.user_name);
-        loginOut= (Button) view.findViewById(R.id.loginout);
-
-
+        userImage = (NetworkImageView) view.findViewById(R.id.user_image);
+        userName = (TextView) view.findViewById(R.id.user_name);
         userImage.setOnClickListener(this);
-        loginOut.setOnClickListener(this);
         getInfoFromLocal();
         return view;
-
     }
-    private String  userImageRes;
-    private String  userNameRes;
-    private void getInfoFromLocal(){
-        sharedPreferences = getActivity().getSharedPreferences("info",MODE_PRIVATE);
-        userImageRes=sharedPreferences.getString("headImgPath","");
-        userNameRes=sharedPreferences.getString("account","");
-        userImage.setImageUrl(utils.BASE + "/"+userImageRes, AppController.getInstance().getImageLoader());
-        Log.v("headImgPath","");
-        userName.setText(userNameRes.equals("null") ? "未设置" : userNameRes);
+
+    private String userUid;
+    private String userImageRes;
+    private String userNameRes;
+
+    private void getInfoFromLocal() {
+        sharedPreferences = getActivity().getSharedPreferences("info", MODE_PRIVATE);
+        userImageRes = sharedPreferences.getString("headImgPath", "");
+        userNameRes = sharedPreferences.getString("account", "");
+        userUid = sharedPreferences.getString("uid", "");
+        userName.setText(userUid.equals("") ? "未登录，点击登录" : userNameRes);
+        userImage.setImageUrl(utils.BASE + "/" + userImageRes, AppController.getInstance().getImageLoader());
     }
 
 
@@ -71,46 +70,16 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_image: {
-                Intent intent=new Intent(getActivity(),UserCenterActivity.class);
-                startActivity(intent);
+                if (userUid.equals("")) {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getActivity(), UserCenterActivity.class);
+                    startActivity(intent);
+                }
             }
-
             break;
-            case R.id.loginout: {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("退出");
-                builder.setMessage("真的要退出账号吗？");
-                builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("info", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.remove("account");
-                        editor.remove("headImgPath");
-                        editor.remove("uid");
-
-                        editor.commit();
-                        Intent intent = new Intent(getActivity(), LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        dialog.dismiss();
-                        getActivity().finish();
-                    }
-                });
-
-                builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
-
-               }
-             break;
         }
-
-
     }
+
 }
