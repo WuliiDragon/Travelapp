@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wlxy.com.travelapp.R;
@@ -22,10 +23,10 @@ import wlxy.com.travelapp.utils.utils;
  */
 
 public class TicketAdapter extends ArrayAdapter<TicketModel> {
-    private List<TicketModel> data;
+    private ArrayList<TicketModel> data;
     private int viewId;
 
-    public TicketAdapter(Context context, int viewId, List<TicketModel> data) {
+    public TicketAdapter(Context context, int viewId, ArrayList<TicketModel> data) {
         super(context, viewId, data);
         this.data = data;
         this.viewId = viewId;
