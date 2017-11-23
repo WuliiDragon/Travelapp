@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment {
     /**
      * 准备好三张网络图片的地址
      */
-    private String [] imageUrl = new String[]{"http://172.16.120.129:8080/img/2017-11/a.jpg",
+    private String[] imageUrl = new String[]{"http://172.16.120.129:8080/img/2017-11/a.jpg",
             "http://172.16.120.129:8080/img/2017-11/b.jpg",
             "http://172.16.120.129:8080/img/2017-11/c.jpg"};
     /**
@@ -97,6 +97,7 @@ public class HomeFragment extends Fragment {
                     //当接收到第三张图片的时候，设置适配器,
                     if (n == imageUrl.length) {
                         viewPager.setAdapter(new CarouselAdapter(data, getActivity()));
+                        merChantListView.addHeaderView(viewPager);
                         //把开关打开
                         isStart = true;
                         t = new MyThread();
@@ -117,14 +118,39 @@ public class HomeFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.d("RightFragment","onAttach");
+        Log.d("RightFragment", "onAttach");
         //构造一个存储照片的集合
         data = new ArrayList<ImageView>();
         //从网络上把图片下载下来
-        for (int i = 0; i < imageUrl.length; i++) {
-            getImageFromNet(imageUrl[i]);
-        }
 
+        HttpUtils httpUtil = new HttpUtils(utils.BASE + "/businessCarousel/findAll.action", null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    int status = response.getInt("status");
+                    if (status == RIGHTSTATUS) {
+                        JSONArray list = response.getJSONArray("data");
+                        imageUrl = new String[list.length()];
+                        for (int i = 0; i < list.length(); i++) {
+                            JSONObject item = (JSONObject) list.get(i);
+                            String imgPath = utils.BASE + item.getString("imgpath");
+                            imageUrl[i] = imgPath;
+                        }
+                        for (int i = 0; i < imageUrl.length; i++) {
+                            getImageFromNet(imageUrl[i]);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        AppController.getInstance().addToRequestQueue(httpUtil);
         //获取ListView数据
         HttpUtils httpUtils = new HttpUtils(utils.BASE + "/business/findAll.action", null, new Response.Listener<JSONObject>() {
             @Override
@@ -154,7 +180,6 @@ public class HomeFragment extends Fragment {
         AppController.getInstance().addToRequestQueue(httpUtils);
 
 
-
     }
 
     @Nullable
@@ -166,29 +191,82 @@ public class HomeFragment extends Fragment {
         merChantModelList = new ArrayList<MerChantModel>();
         merChantAdapter = new MerChantAdapter(getActivity(), R.layout.item_merchant, merChantModelList);
         merChantListView.setAdapter(merChantAdapter);
-
-
         View view_page = inflater.inflate(R.layout.view_page, container, false);
         viewPager = (ViewPager) view_page.findViewById(R.id.vp);
-        merChantListView.addHeaderView(view_page);
+
+
+
         merChantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MerChantModel info = merChantModelList.get(position);
                 Bundle bundle = new Bundle();
                 bundle.putString("bid", info.getBid());
-                Intent intent = new Intent(getActivity(),MerChantDetailActivity.class);
+                Intent intent = new Intent(getActivity(), MerChantDetailActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
 
-        Log.d("RightFragment","onCreateView");
+        Log.d("RightFragment", "onCreateView");
         return view;
     }
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("RightFragment", "onCreate");
+    }
 
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("RightFragment", "onActivityCreated");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("RightFragment", "onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("RightFragment", "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("RightFragment", "onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("RightFragment", "onStop");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("RightFragment", "onDestroyView");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("RightFragment", "onDestroy");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d("RightFragment", "onDetach");
+    }
 
     private void getImageFromNet(final String imagePath) {
 
@@ -211,7 +289,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         }.start();
-
 
 
     }
@@ -238,9 +315,6 @@ public class HomeFragment extends Fragment {
             }
         }
     }
-
-
-
 
 
 }
