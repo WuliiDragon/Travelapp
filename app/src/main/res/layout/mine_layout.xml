@@ -6,9 +6,32 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:background="@color/colorAccent">
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/user_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/user_name"
+            android:background="#fafaf9"
+            android:layout_marginLeft="20dp"
+            android:layout_width="200dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -239,4 +262,9 @@
             android:background="#e9e0e0"
             tools:alpha="0.4" />
     </LinearLayout>
+    <Button
+        android:text="退出登录"
+        android:id="@+id/loginout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 </LinearLayout>

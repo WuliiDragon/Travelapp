@@ -173,65 +173,6 @@ public class HomeFragment extends Fragment {
 
 
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        Log.d("RightFragment","onCreate");
-    }
-
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-        Log.d("RightFragment","onActivityCreated");
-    }
-
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-        Log.d("RightFragment","onStart");
-    }
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        Log.d("RightFragment","onResume");
-    }
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-        Log.d("RightFragment","onPause");
-    }
-    @Override
-    public void onStop()
-    {
-        super.onStop();
-        Log.d("RightFragment","onStop");
-    }
-    @Override
-    public void onDestroyView()
-    {
-        super.onDestroyView();
-        Log.d("RightFragment","onDestroyView");
-    }
-    @Override
-    public void onDestroy()
-    {
-        super.onDestroy();
-        Log.d("RightFragment","onDestroy");
-    }
-    @Override
-    public void onDetach()
-    {
-        super.onDetach();
-        Log.d("RightFragment","onDetach");
-    }
-
     private void getImageFromNet(final String imagePath) {
 
         new Thread() {

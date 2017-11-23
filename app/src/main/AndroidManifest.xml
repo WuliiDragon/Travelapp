@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".main.UserCenterActivity"></activity>
         <activity android:name=".main.LoginActivity"></activity>
         <activity android:name=".main.RegisterActivity"></activity>
         <activity android:name=".Tools.QRcode"></activity>
