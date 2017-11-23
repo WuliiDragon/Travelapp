@@ -1,8 +1,9 @@
 package wlxy.com.travelapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -11,8 +12,11 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+import wlxy.com.travelapp.main.MerChantDetailActivity;
+
 public class CarouselAdapter extends PagerAdapter {
     private List<ImageView> data;
+    public List<String> bid;
     Context context;
 
     public CarouselAdapter(List<ImageView> data, Context context) {
@@ -41,6 +45,8 @@ public class CarouselAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView image = data.get(position % data.size());
+        final String Strbid = bid.get(position % data.size());
+
         //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
         ViewParent vp = image.getParent();
         if (vp != null) {
@@ -48,11 +54,13 @@ public class CarouselAdapter extends PagerAdapter {
             vg.removeView(image);
         }
         image.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                Log.d("123", "click");
-                //Toast.makeText(context, "点击了图片", 0).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("bid", Strbid);
+                Intent intent = new Intent(context, MerChantDetailActivity.class);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
             }
         });
         container.addView(data.get(position % data.size()));

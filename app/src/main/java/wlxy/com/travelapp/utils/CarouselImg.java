@@ -34,9 +34,8 @@ public class CarouselImg {
     private ViewPager viewPager;
     private ListView merChantListView;
     FragmentActivity activity;
-    private String[] imageUrl = new String[]{"http://172.16.120.129:8080/img/2017-11/a.jpg",
-            "http://172.16.120.129:8080/img/2017-11/b.jpg",
-            "http://172.16.120.129:8080/img/2017-11/c.jpg"};
+    private String[] imageUrl;
+    private List<String> bid;
     private List<ImageView> data;
     private boolean isStart = false;
     private MyThreads t;
@@ -50,6 +49,7 @@ public class CarouselImg {
 
     public void init() {
         data = new ArrayList<ImageView>();
+        bid = new ArrayList<String>();
         //从网络上把图片下载下来
         HttpUtils httpUtil = new HttpUtils(utils.BASE + "/businessCarousel/findAll.action", null, new Response.Listener<JSONObject>() {
             @Override
@@ -62,6 +62,7 @@ public class CarouselImg {
                         for (int i = 0; i < list.length(); i++) {
                             JSONObject item = (JSONObject) list.get(i);
                             String imgPath = utils.BASE + item.getString("imgpath");
+                            bid.add(item.getString("bid"));
                             imageUrl[i] = imgPath;
                         }
                         for (int i = 0; i < imageUrl.length; i++) {
@@ -112,21 +113,18 @@ public class CarouselImg {
                     ImageView iv = new ImageView(activity);
                     iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     iv.setImageBitmap(bitmap);
-                    //把图片添加到集合里
                     data.add(iv);
-                    //当接收到第三张图片的时候，设置适配器,
                     if (n == imageUrl.length) {
-                        viewPager.setAdapter(new CarouselAdapter(data, activity));
+                        CarouselAdapter ca = new CarouselAdapter(data, activity);
+                        ca.bid = bid;
+                        viewPager.setAdapter(ca);
                         merChantListView.addHeaderView(viewPager);
-                        //把开关打开
                         isStart = true;
                         t = new MyThreads();
-                        //启动轮播图片线程
                         t.start();
                     }
                     break;
                 case 1:
-                    //接受到的线程发过来的p数字
                     int page = (Integer) msg.obj;
                     viewPager.setCurrentItem(page);
                     break;
