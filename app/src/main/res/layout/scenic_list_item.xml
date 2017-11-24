@@ -17,11 +17,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageView1"
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/merchant_img"
                 android:layout_width="80dp"
-                android:layout_height="80dp"
-                app:srcCompat="@mipmap/ic_launcher" />
+                android:layout_height="80dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -29,98 +28,102 @@
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:orientation="vertical">
-
-            <TextView
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/store_name"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:text="钟楼"></TextView>
             <LinearLayout
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="20dp"
+                    android:id="@+id/merchant_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:text="钟楼"
+                    android:textStyle="bold"></TextView></LinearLayout>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_weight="1"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:src="@drawable/start"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp" />
-                <ImageView
-                    android:src="@drawable/start"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp" />
-                <ImageView
-                    android:src="@drawable/start"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp" />
-                <ImageView
-                    android:src="@drawable/start"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp" />
-                <ImageView
-                    android:src="@drawable/start"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp" />
+
                 <TextView
                     android:layout_marginLeft="5dp"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:textSize="10dp"
-                    android:text="1223343条评论"
-                    android:id="@+id/store_owner"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:text="AAAAA级风景区"
+                    android:id="@+id/merchant_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
                 </TextView>
 
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/zan2" />
+
             </LinearLayout>
-            <LinearLayout
+
+            <RelativeLayout
+                android:layout_marginLeft="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:weightSum="1">
+
                 <TextView
-                    android:textColor="#fbff8944"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginRight="3dp"
-                    android:textSize="15dp"
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/merchant_price"
+                    android:layout_alignBottom="@+id/merchant_price"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:gravity="right"
-                    android:layout_marginTop="16dp"
                     android:text="¥"
-                    android:layout_width="17dp"
-                    android:layout_height="match_parent" />
+                    android:textColor="#fbff8944"
+                    android:textSize="15dp" />
+
                 <TextView
-                    android:textColor="#f4712b"
+                    android:id="@+id/merchant_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView4"
+                    android:layout_toRightOf="@+id/textView4"
                     android:gravity="bottom"
-                    android:textSize="20dp"
+                    android:orientation="vertical"
                     android:text="29.6"
-                    android:id="@+id/store_phone"
-                    android:layout_width="43dp"
-                    android:layout_height="35dp"
-                    android:orientation="vertical">
+                    android:textColor="#f4712b"
+                    android:textSize="20dp">
 
                 </TextView>
+
                 <TextView
-                    android:textSize="10dp"
-                    android:layout_marginBottom="3dp"
-                    android:gravity="bottom"
-                    android:layout_width="30dp"
-                    android:layout_height="match_parent"
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/merchant_price"
+                    android:layout_alignBottom="@+id/merchant_price"
+                    android:layout_toEndOf="@+id/merchant_price"
+                    android:layout_toRightOf="@+id/merchant_price"
                     android:text="元"
-                    android:layout_weight="0.03" />
-            </LinearLayout>
-<LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-            <TextView
+                    android:textSize="10dp" />
+            </RelativeLayout>
+       <RelativeLayout
+           android:gravity="top"
+           android:layout_weight="4"
+             android:orientation="horizontal"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+                <TextView
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
                 android:textColor="#ffb144"
@@ -128,23 +131,10 @@
                 android:layout_marginLeft="10dp"
                 android:textSize="10dp"
                 android:text="东方宫殿建筑代表，世界宫殿建筑典范"
-                android:id="@+id/store_address"
+                android:id="@+id/merchant_adress"
                 android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:orientation="vertical"></TextView>
-<ImageView
-    android:layout_marginLeft="5dp"
-    android:layout_gravity="center_vertical"
-    android:src="@drawable/tuijian"
-    android:layout_width="15dp"
-    android:layout_height="15dp" />
-
-    <ImageView
-        android:id="@+id/qrcodesmall"
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="40dp" />
-</LinearLayout>
+                android:layout_height="wrap_content"></TextView>
+</RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>

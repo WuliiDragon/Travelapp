@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:gravity="center_horizontal"
+        android:background="#10ce8f"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/register_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/lifteback" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="104dp"
+            android:layout_marginRight="104dp"
+            android:gravity="center"
+            android:text="Create Account"
+            android:textColor="#fcfafa"
+            android:textSize="26dp" />
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/register_phone_number"
-        android:layout_width="260dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/register_code"
+        android:layout_alignLeft="@+id/register_onepass"
+        android:layout_alignStart="@+id/register_onepass"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/register_edittext"
         android:ems="10"
         android:hint="请输入手机号"
         android:inputType="textPersonName"
@@ -22,30 +55,41 @@
 
     <EditText
         android:id="@+id/register_code"
-        android:layout_width="123dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/register_onepass"
+        android:layout_marginBottom="25dp"
+        android:layout_toEndOf="@+id/register_send"
+        android:layout_toRightOf="@+id/register_send"
+        android:background="@drawable/register_edittext"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=""
         app:layout_constraintTop_toBottomOf="@+id/register_phone_number"
         tools:layout_editor_absoluteX="62dp" />
 
     <Button
+        android:background="#10ce8f"
         android:id="@+id/register_send"
-        android:layout_width="133dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignLeft="@+id/register_phone_number"
+        android:layout_alignStart="@+id/register_phone_number"
+        android:layout_alignTop="@+id/register_code"
+        android:textColor="#fdfdfd"
+        android:textSize="16dp"
         android:text="发送验证码"
         app:layout_constraintStart_toEndOf="@+id/register_code"
         app:layout_constraintTop_toBottomOf="@+id/register_phone_number" />
 
     <EditText
         android:id="@+id/register_onepass"
-        android:layout_width="261dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/register_towpass"
+        android:layout_alignLeft="@+id/register_towpass"
+        android:layout_alignStart="@+id/register_towpass"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/register_edittext"
         android:ems="10"
         android:hint="请输入密码"
         android:inputType="textPersonName"
@@ -53,10 +97,14 @@
         tools:layout_editor_absoluteX="62dp" />
 
     <EditText
+        android:background="@drawable/register_edittext"
         android:id="@+id/register_towpass"
-        android:layout_width="264dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/register"
+        android:layout_alignLeft="@+id/register"
+        android:layout_alignStart="@+id/register"
+        android:layout_marginBottom="48dp"
         android:ems="10"
         android:hint="请再次输入密码"
         android:inputType="textPersonName"
@@ -65,10 +113,15 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="265dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="8dp"
-        android:text="注册"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="119dp"
+        android:background="#10ce8f"
+        android:text="注  册"
+        android:textColor="#fbfbfd"
+        android:textSize="20dp"
         app:layout_constraintTop_toBottomOf="@+id/register_towpass"
         tools:layout_editor_absoluteX="62dp" />
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -6,9 +6,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
-        android:background="#44ccee"
+        android:background="#10ce8f"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -25,20 +25,14 @@
             android:id="@+id/user_center_title"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="97dp"
-            android:layout_marginStart="97dp"
-            android:layout_toEndOf="@+id/user_center_back"
-            android:layout_toRightOf="@+id/user_center_back"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:text="个人资料"
-            android:textColor="#fafafa" />
+            android:textColor="#fafafa"
+            android:textSize="20dp" />
     </RelativeLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:background="#e9e0e0"
-        tools:alpha="0.4" />
+
     <LinearLayout
         android:gravity="center"
         android:layout_width="match_parent"

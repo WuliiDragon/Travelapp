@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -39,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button sendVerificationCodeBtn;
     private Button registerBtn;
     private String returnCode;
+    private ImageView registerback;
 
     private String REGISTERURL = utils.BASE + "/user/regist.action";
     private String CODEURL = utils.BASE + "/SendMessage/registCode.action";
@@ -47,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     CountDownTimer timer = new CountDownTimer(60000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
-            sendVerificationCodeBtn.setText(millisUntilFinished / 1000 + "秒");
+            sendVerificationCodeBtn.setText(millisUntilFinished / 1000 + "秒后重发");
         }
 
         @Override
@@ -70,9 +72,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         verificationPassInput = (EditText) findViewById(R.id.register_towpass);
         sendVerificationCodeBtn = (Button) findViewById(R.id.register_send);
         registerBtn = (Button) findViewById(R.id.register);
+        registerback= (ImageView) findViewById(R.id.register_back);
 
         sendVerificationCodeBtn.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
+        registerback.setOnClickListener(this);
 
     }
 
@@ -173,6 +177,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     AppController.getInstance().addToRequestQueue(httpUtils);
                 }
+            }
+            break;
+            case R.id.register_back:{
+                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
+
             }
             break;
         }

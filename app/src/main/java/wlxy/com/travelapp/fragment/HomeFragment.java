@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         View view_page = inflater.inflate(R.layout.view_page, container, false);
         viewPager = (ViewPager) view_page.findViewById(R.id.vp);
         //初始化轮播图
-        new HomeCarouselImg(viewPager, merChantListView, getActivity()).init();
+        new HomeCarouselImg(viewPager, merChantListView, getActivity(),inflater).init();
         //listView设置点击事件
         merChantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

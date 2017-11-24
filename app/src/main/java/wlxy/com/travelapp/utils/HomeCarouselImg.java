@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -22,6 +23,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.HomeCarouselAdapter;
 
 /**
@@ -36,12 +38,14 @@ public class HomeCarouselImg {
     FragmentActivity activity;
     private String[] imageUrl;
     private List<String> bid;
+    private LayoutInflater inflater;
     private List<ImageView> data;
     private boolean isStart = false;
     private MyThreads t;
     private final int RIGHTSTATUS = 200;
 
-    public HomeCarouselImg(ViewPager viewPager, ListView merChantListView, FragmentActivity activity) {
+    public HomeCarouselImg(ViewPager viewPager, ListView merChantListView, FragmentActivity activity, LayoutInflater inflater) {
+        this.inflater = inflater;
         this.viewPager = viewPager;
         this.merChantListView = merChantListView;
         this.activity = activity;
@@ -119,6 +123,7 @@ public class HomeCarouselImg {
                         ca.bid = bid;
                         viewPager.setAdapter(ca);
                         merChantListView.addHeaderView(viewPager);
+                        merChantListView.addHeaderView(inflater.inflate(R.layout.homefragment_layout,null));
                         isStart = true;
                         t = new MyThreads();
                         t.start();
