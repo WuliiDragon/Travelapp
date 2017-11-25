@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.MerChantAdapter;
 import wlxy.com.travelapp.adapter.TicketAdapter;
+import wlxy.com.travelapp.main.MerChantDetailActivity;
 import wlxy.com.travelapp.model.MerChantModel;
 import wlxy.com.travelapp.model.TicketModel;
 
@@ -21,7 +23,7 @@ import wlxy.com.travelapp.model.TicketModel;
  * @date 2017/11/22
  */
 
-public class TicketFragment extends Fragment {
+public class TicketFragment extends Fragment implements TicketAdapter.btnCallback {
     private ListView ticketListView;
     private ListView merChantListView;
     private final int RIGHTSTATUS = 200;
@@ -59,9 +61,30 @@ public class TicketFragment extends Fragment {
         View view = inflater.inflate(R.layout.home_layout, container, false);
         ticketListView = (ListView) view.findViewById(R.id.merchant_listView);
 
-        ticketAdapter = new TicketAdapter(getActivity(), R.layout.item_ticket, ticketModelList);
+        ticketAdapter = new TicketAdapter(getActivity(), R.layout.item_ticket, ticketModelList, this);
         ticketListView.setAdapter(ticketAdapter);
         return view;
 
+    }
+
+    @Override
+    public void click(View v) {
+        String tag = (String) v.getTag();
+        int index = Integer.parseInt(tag.substring(0, tag.length() - 1));
+        TicketModel tm = ticketModelList.get(index);
+
+
+        if (tag.contains("-")) {
+            if (tm.getCount() <= 0){
+                return ;
+            }
+            tm.setCount(tm.getCount() - 1);
+        }
+
+        if (tag.contains("+")) {
+            tm.setCount(tm.getCount() + 1);
+        }
+
+        ticketAdapter.notifyDataSetChanged();
     }
 }

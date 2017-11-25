@@ -11,6 +11,16 @@ public class TicketModel {
     private String tname;
     private String info;
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    private int count;
+
     public String getTid() {
         return tid;
     }

@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <RelativeLayout
-            android:layout_weight="2.5"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_weight="2.5"
             android:orientation="vertical">
 
             <TextView
@@ -38,17 +36,61 @@
                 android:layout_below="@+id/ticket_name"
                 android:layout_marginTop="11dp"
                 android:text="无限制使用" />
+
+            <Button
+                android:id="@+id/ticket_plus"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btn_bg"
+                android:clickable="true"
+                android:elevation="0dp"
+                android:textColor="#ffffff"
+                android:text="+" />
+
+            <TextView
+                android:id="@+id/ticket_count"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_alignTop="@+id/ticket_plus"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/ticket_plus"
+                android:layout_toStartOf="@+id/ticket_plus"
+                android:text="0"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/ticket_reduce"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@+id/ticket_count"
+                android:layout_marginEnd="11dp"
+                android:layout_marginRight="11dp"
+                android:layout_toLeftOf="@+id/ticket_count"
+                android:layout_toStartOf="@+id/ticket_count"
+                android:background="@drawable/btn_bg"
+                android:clickable="true"
+                android:textColor="#ffffff"
+                android:text="—" />
+
         </RelativeLayout>
+
         <ImageView
-            android:background="#bfbfbf"
             android:layout_width="1dp"
             android:layout_height="60dp"
-            />
+            android:background="#bfbfbf" />
 
         <LinearLayout
-            android:layout_weight="7.5"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_weight="7.5"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -82,17 +124,19 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:background="@drawable/layoutbutton_coner"
-                    android:textSize="10dp"
+                    android:id="@+id/tick_button"
                     android:layout_width="65dp"
                     android:layout_height="25dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="15dp"
+                    android:background="@drawable/layoutbutton_coner"
                     android:text="预定"
                     android:textColor="#fbf9f9"
-                    android:id="@+id/tick_button" />
+                    android:textSize="10dp"
+                    android:visibility="invisible" />
 
             </RelativeLayout>
-        </LinearLayout></LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
         merChantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MerChantModel info = merChantModelList.get(position);
+                MerChantModel info = merChantModelList.get(position - 2);
                 Bundle bundle = new Bundle();
                 bundle.putString("bid", info.getBid());
                 Intent intent = new Intent(getActivity(), MerChantDetailActivity.class);

@@ -49,11 +49,8 @@ dependencies {
 
     compile 'com.ashokvarma.android:bottom-navigation-bar:0.9.5'
     compile 'com.jude:rollviewpager:1.2.9'
+    //悬浮按钮
+    compile 'com.android.support:design:23.1.1'
 
-
-    //分页选择器
-//    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
-////    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
-//    compile 'com.ogaclejapan.smarttablayout:utils-v13:1.6.1@aar'
 
 }
