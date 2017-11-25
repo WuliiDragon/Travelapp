@@ -85,7 +85,6 @@ public class MerChantDetailActivity extends AppCompatActivity {
                     orderModelArrayList.add(ticketOrderModel);
                 }
 
-
                 HashMap<String, String> par = new HashMap<>(2);
 
 
