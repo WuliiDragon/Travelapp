@@ -51,6 +51,4 @@ dependencies {
     compile 'com.jude:rollviewpager:1.2.9'
     //悬浮按钮
     compile 'com.android.support:design:23.1.1'
-
-
 }

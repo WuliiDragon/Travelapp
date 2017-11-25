@@ -20,20 +20,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.NotSerializableException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.MerChantDetailAdapter;
-import wlxy.com.travelapp.adapter.TicketAdapter;
 import wlxy.com.travelapp.fragment.MineFragment;
 import wlxy.com.travelapp.fragment.TicketFragment;
 import wlxy.com.travelapp.model.TicketModel;
@@ -84,16 +75,17 @@ public class MerChantDetailActivity extends AppCompatActivity {
                     ticketOrderModel.setNum(tm.getCount());
                     orderModelArrayList.add(ticketOrderModel);
                 }
-
-
                 HashMap<String, String> par = new HashMap<>(2);
-
-
                 par.put("bid", bid);
-//                par.put("userTicket");
-
-
-                HttpUtils request = new HttpUtils(Request.Method.POST, utils.BASE + "/order/createOrder.action", par, new Response.Listener<JSONObject>() {
+                int i = 0;
+                StringBuffer sb = new StringBuffer();
+                for (TicketOrderModel tm : orderModelArrayList) {
+                    sb.append("&userTicket[" + i + "].num=" + tm.getNum());
+                    sb.append("&userTicket[" + i + "].tid=" + tm.getTid());
+                    i++;
+                }
+                System.out.println(utils.BASE + "/order/createOrder.action?uid=2511150102" + sb.toString());
+                HttpUtils request = new HttpUtils(Request.Method.POST, utils.BASE + "/order/createOrder.action?uid=2511150102" + sb.toString(), par, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
@@ -101,7 +93,7 @@ public class MerChantDetailActivity extends AppCompatActivity {
                             if (status.equals("200")) {
                                 JSONObject data = response.getJSONObject("data");
                                 JSONArray ticket = data.getJSONArray("ticket");
-
+                                System.out.println("**************************************" + data.toString());
                                 for (int i = 0; i < ticket.length(); i++) {
                                     JSONObject item = (JSONObject) ticket.get(i);
                                     TicketModel ticketModel = JSON.parseObject(item.toString(), TicketModel.class);
