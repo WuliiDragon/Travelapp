@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class TicketOrderModel implements Serializable {
     private int  num;
     private String tid;
+//    private int ;
 
     public int getNum() {
         return num;

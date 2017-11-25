@@ -67,13 +67,16 @@ public class MerChantDetailActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MerChantDetailActivity.this, "" + ticketModelList.toString(), Toast.LENGTH_LONG).show();
                 ArrayList<TicketOrderModel> orderModelArrayList = new ArrayList<>();
+                float totalprice = 0;
                 for (TicketModel tm : ticketModelList) {
-                    TicketOrderModel ticketOrderModel = new TicketOrderModel();
-                    ticketOrderModel.setTid(tm.getTid());
-                    ticketOrderModel.setNum(tm.getCount());
-                    orderModelArrayList.add(ticketOrderModel);
+                    if (tm.getCount()>0){
+                        totalprice += Float.parseFloat(tm.getPrice());
+                        TicketOrderModel ticketOrderModel = new TicketOrderModel();
+                        ticketOrderModel.setTid(tm.getTid());
+                        ticketOrderModel.setNum(tm.getCount());
+                        orderModelArrayList.add(ticketOrderModel);
+                    }
                 }
                 HashMap<String, String> par = new HashMap<>(2);
                 par.put("bid", bid);
@@ -84,6 +87,7 @@ public class MerChantDetailActivity extends AppCompatActivity {
                     sb.append("&userTicket[" + i + "].tid=" + tm.getTid());
                     i++;
                 }
+                sb.append("&totalprice="+totalprice);
                 System.out.println(utils.BASE + "/order/createOrder.action?uid=2511150102" + sb.toString());
                 HttpUtils request = new HttpUtils(Request.Method.POST, utils.BASE + "/order/createOrder.action?uid=2511150102" + sb.toString(), par, new Response.Listener<JSONObject>() {
                     @Override
@@ -92,17 +96,6 @@ public class MerChantDetailActivity extends AppCompatActivity {
                             String status = response.getString("status");
                             if (status.equals("200")) {
                                 JSONObject data = response.getJSONObject("data");
-                                JSONArray ticket = data.getJSONArray("ticket");
-                                System.out.println("**************************************" + data.toString());
-                                for (int i = 0; i < ticket.length(); i++) {
-                                    JSONObject item = (JSONObject) ticket.get(i);
-                                    TicketModel ticketModel = JSON.parseObject(item.toString(), TicketModel.class);
-                                    ticketModel.setCount(0);
-                                    ticketModelList.add(ticketModel);
-                                }
-
-                                TicketFragment tf = (TicketFragment) fragmentList.get(0);
-                                tf.getTicketAdapter().notifyDataSetChanged();
                             } else {
                                 String msg = response.getString("msg");
                                 Toast.makeText(MerChantDetailActivity.this, msg, Toast.LENGTH_LONG).show();
@@ -120,9 +113,6 @@ public class MerChantDetailActivity extends AppCompatActivity {
                 });
 
                 AppController.getInstance().addToRequestQueue(request);
-
-
-//                usicket[0].num=2&userTicket[0].tid=2511150103erT&userTicket[1].num=2&userTicket[1].tid=2511150104
             }
         });
 
