@@ -55,7 +55,6 @@ public class TicketFragment extends Fragment implements TicketAdapter.btnCallbac
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Bundle args = new Bundle();
         ticketModelList = (ArrayList<TicketModel>) getArguments().getSerializable("ticketModelList");
 
         View view = inflater.inflate(R.layout.home_layout, container, false);
@@ -75,8 +74,8 @@ public class TicketFragment extends Fragment implements TicketAdapter.btnCallbac
 
 
         if (tag.contains("-")) {
-            if (tm.getCount() <= 0){
-                return ;
+            if (tm.getCount() <= 0) {
+                return;
             }
             tm.setCount(tm.getCount() - 1);
         }

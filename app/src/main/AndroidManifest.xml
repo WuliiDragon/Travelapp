@@ -11,21 +11,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity android:name=".main.HomeActivity">
+        <activity
+            android:name=".main.HomeActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.UserCenterActivity"
-            android:launchMode="singleTask"></activity>
+        <activity
+            android:name=".main.UserCenterActivity"
+            android:launchMode="singleTop"></activity>
         <activity android:name=".main.LoginActivity"></activity>
-        <activity android:name=".main.RegisterActivity"
-            android:launchMode="singleTask"></activity>
-        <activity android:name=".main.MerChantDetailActivity"
+        <activity
+            android:name=".main.RegisterActivity"
+            android:launchMode="singleTop"></activity>
+        <activity
+            android:name=".main.MerChantDetailActivity"
             android:launchMode="singleTask"></activity>
         <activity android:name=".Tools.QRcode"></activity>
+        <activity android:name=".main.OrderActivity"></activity>
+
     </application>
 
 

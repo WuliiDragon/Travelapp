@@ -1,13 +1,16 @@
 package wlxy.com.travelapp.main;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,6 +31,7 @@ import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.MerChantDetailAdapter;
 import wlxy.com.travelapp.fragment.MineFragment;
 import wlxy.com.travelapp.fragment.TicketFragment;
+import wlxy.com.travelapp.model.MerChantModel;
 import wlxy.com.travelapp.model.TicketModel;
 import wlxy.com.travelapp.model.TicketOrderModel;
 import wlxy.com.travelapp.utils.AppController;
@@ -70,14 +75,27 @@ public class MerChantDetailActivity extends AppCompatActivity {
                 ArrayList<TicketOrderModel> orderModelArrayList = new ArrayList<>();
                 float totalprice = 0;
                 for (TicketModel tm : ticketModelList) {
-                    if (tm.getCount()>0){
-                        totalprice += Float.parseFloat(tm.getPrice());
+                    if (tm.getCount() > 0) {
+                        totalprice += Float.parseFloat(tm.getPrice()) * tm.getCount();
                         TicketOrderModel ticketOrderModel = new TicketOrderModel();
                         ticketOrderModel.setTid(tm.getTid());
                         ticketOrderModel.setNum(tm.getCount());
+                        ticketOrderModel.setPrice(tm.getPrice());
                         orderModelArrayList.add(ticketOrderModel);
                     }
                 }
+                if (orderModelArrayList.size() == 0) {
+                    Toast.makeText(MerChantDetailActivity.this, "您还未选择任何门票哦！", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                if (sharedPreferences.getString("token", "").equals("null") || sharedPreferences.getString("token", "").equals("")) {
+                    Intent intent = new Intent(MerChantDetailActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
                 HashMap<String, String> par = new HashMap<>(2);
                 par.put("bid", bid);
                 int i = 0;
@@ -85,17 +103,35 @@ public class MerChantDetailActivity extends AppCompatActivity {
                 for (TicketOrderModel tm : orderModelArrayList) {
                     sb.append("&userTicket[" + i + "].num=" + tm.getNum());
                     sb.append("&userTicket[" + i + "].tid=" + tm.getTid());
+                    sb.append("&userTicket[" + i + "].price=" + tm.getPrice());
                     i++;
                 }
-                sb.append("&totalprice="+totalprice);
-                System.out.println(utils.BASE + "/order/createOrder.action?uid=2511150102" + sb.toString());
-                HttpUtils request = new HttpUtils(Request.Method.POST, utils.BASE + "/order/createOrder.action?uid=2511150102" + sb.toString(), par, new Response.Listener<JSONObject>() {
+                sb.append("&totalprice=" + totalprice);
+                sb.append("&uid=" + sharedPreferences.getString("uid", ""));
+                sb.append("&phone=" + sharedPreferences.getString("phone", ""));
+                sb.append("&token=" + sharedPreferences.getString("token", ""));
+
+                HttpUtils request = new HttpUtils(Request.Method.POST, utils.BASE + "/order/createOrder.action?" + sb.toString(), par, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             String status = response.getString("status");
                             if (status.equals("200")) {
                                 JSONObject data = response.getJSONObject("data");
+                                JSONObject order = data.getJSONObject("order");
+
+
+                                Intent intent = new Intent(MerChantDetailActivity.this, OrderActivity.class);
+
+                                intent.putExtra("oid", order.getString("oid"));
+                                intent.putExtra("status", order.getString("status"));
+                                intent.putExtra("createTime", order.getString("createTime"));
+                                intent.putExtra("payTime", order.getString("payTime"));
+                                intent.putExtra("uid", order.getString("uid"));
+                                intent.putExtra("bid", order.getString("bid"));
+                                intent.putExtra("totalprice", order.getString("totalprice"));
+                                startActivity(intent);
+
                             } else {
                                 String msg = response.getString("msg");
                                 Toast.makeText(MerChantDetailActivity.this, msg, Toast.LENGTH_LONG).show();

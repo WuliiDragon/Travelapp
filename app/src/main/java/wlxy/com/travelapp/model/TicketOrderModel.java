@@ -9,7 +9,15 @@ import java.io.Serializable;
 public class TicketOrderModel implements Serializable {
     private int  num;
     private String tid;
-//    private int ;
+    private String price;
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public int getNum() {
         return num;

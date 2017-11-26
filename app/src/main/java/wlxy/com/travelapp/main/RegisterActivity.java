@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         verificationPassInput = (EditText) findViewById(R.id.register_towpass);
         sendVerificationCodeBtn = (Button) findViewById(R.id.register_send);
         registerBtn = (Button) findViewById(R.id.register);
-        registerback= (ImageView) findViewById(R.id.register_back);
+        registerback = (ImageView) findViewById(R.id.register_back);
 
         sendVerificationCodeBtn.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
@@ -140,47 +140,60 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(this, "两次密码输入不相同", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    Map<String, String> par = new HashMap<String, String>();
+                    Map<String, String> par = new HashMap<String, String>(2);
                     par.put("phone", phoneNumberInput.getText().toString());
                     par.put("pass", passInput.getText().toString());
 
 
                     HttpUtils httpUtils = new HttpUtils(Request.Method.POST, REGISTERURL, par, new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    try {
-                                        int status = response.getInt("status");
-                                        if (status == 200) {
-                                            Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                                            startActivity(intent);
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                int status = response.getInt("status");
+                                if (status == 200) {
 
-                                            SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-                                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                                            editor.putString("phone", phoneNumberInput.getText().toString());
-                                            editor.putString("pass", passInput.getText().toString());
-                                            editor.commit();
+                                    JSONObject data = response.getJSONObject("data");
+                                    SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                                        } else {
-                                            String msg = response.getString("msg");
-                                            Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                        Toast.makeText(RegisterActivity.this, "错误", Toast.LENGTH_SHORT).show();
-                                    }
+
+                                    editor.putString("uid", data.getString("uid"));
+                                    editor.putString("phone", data.getString("phone"));
+                                    editor.putString("account", data.getString("account"));
+                                    editor.putString("signinTime", data.getString("signinTime"));
+                                    editor.putString("pass", data.getString("pass"));
+                                    editor.putString("sex", data.getString("sex"));
+                                    editor.putString("token", data.getString("token"));
+                                    editor.putString("headImgPath", data.getString("headImgPath"));
+                                    editor.putString("phone", phoneNumberInput.getText().toString());
+                                    editor.putString("pass", passInput.getText().toString());
+
+                                    editor.commit();
+                                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+
+
+                                } else {
+                                    String msg = response.getString("msg");
+                                    Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
                                 }
-                            }, new Response.ErrorListener() {
-                                public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(RegisterActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(RegisterActivity.this, "错误", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(RegisterActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                     AppController.getInstance().addToRequestQueue(httpUtils);
                 }
             }
             break;
-            case R.id.register_back:{
-                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+            case R.id.register_back: {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
 
             }

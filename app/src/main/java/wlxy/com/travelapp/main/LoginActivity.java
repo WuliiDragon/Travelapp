@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         editor.putString("signinTime", data.getString("signinTime"));
                                         editor.putString("pass", data.getString("pass"));
                                         editor.putString("sex", data.getString("sex"));
+                                        editor.putString("token", data.getString("token"));
                                         editor.putString("headImgPath", data.getString("headImgPath"));
 
                                         editor.commit();
