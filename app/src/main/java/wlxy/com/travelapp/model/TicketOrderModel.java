@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class TicketOrderModel implements Serializable {
-    private int  num;
+    private int num;
     private String tid;
     private String price;
 

@@ -1,21 +1,17 @@
 package wlxy.com.travelapp.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import wlxy.com.travelapp.R;
-import wlxy.com.travelapp.adapter.MerChantAdapter;
 import wlxy.com.travelapp.adapter.TicketAdapter;
-import wlxy.com.travelapp.main.MerChantDetailActivity;
-import wlxy.com.travelapp.model.MerChantModel;
 import wlxy.com.travelapp.model.TicketModel;
 
 /**
@@ -23,7 +19,7 @@ import wlxy.com.travelapp.model.TicketModel;
  * @date 2017/11/22
  */
 
-public class TicketFragment extends Fragment implements TicketAdapter.btnCallback {
+public class TicketFragment extends BaseFragment implements TicketAdapter.btnCallback {
     private ListView ticketListView;
     private ListView merChantListView;
     private final int RIGHTSTATUS = 200;
@@ -64,6 +60,12 @@ public class TicketFragment extends Fragment implements TicketAdapter.btnCallbac
         ticketListView.setAdapter(ticketAdapter);
         return view;
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.TAG = "TicketFragment";
     }
 
     @Override

@@ -3,7 +3,6 @@ package wlxy.com.travelapp.main;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +25,7 @@ import wlxy.com.travelapp.utils.utils;
  * Created by guardian on 2017/11/19.
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private Button loginBtn;
     private SharedPreferences sharedPreferences;
@@ -40,6 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.TAG = "LoginActivity";
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.login_layout);
         loginBtn = (Button) findViewById(R.id.login_btn);

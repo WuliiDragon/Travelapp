@@ -8,13 +8,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
-import wlxy.com.travelapp.main.LoginActivity;
-
 /**
  * Created by WLW on 2017/11/18.
  *
  * @author dragon
- * 获取Application的单例
+ *         获取Application的单例
  */
 
 public class AppController extends Application {

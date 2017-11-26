@@ -11,13 +11,9 @@ import android.widget.TextView;
 import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import wlxy.com.travelapp.R;
-import wlxy.com.travelapp.model.MerChantModel;
 import wlxy.com.travelapp.model.TicketModel;
-import wlxy.com.travelapp.utils.AppController;
-import wlxy.com.travelapp.utils.utils;
 
 /**
  * Created by WLW on 2017/11/22.
@@ -87,7 +83,7 @@ public class TicketAdapter extends ArrayAdapter<TicketModel> implements View.OnC
         viewHolder.ticketPrice.setText(ticketModel.getPrice());
         viewHolder.ticketInfo.setText(ticketModel.getInfo());
         viewHolder.ticketName.setText(ticketModel.getTname());
-        viewHolder.ticketCount.setText(ticketModel.getCount()+"");
+        viewHolder.ticketCount.setText(ticketModel.getCount() + "");
 
 
         return view;

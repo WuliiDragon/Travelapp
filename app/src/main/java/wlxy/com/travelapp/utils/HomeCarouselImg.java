@@ -123,7 +123,7 @@ public class HomeCarouselImg {
                         ca.bid = bid;
                         viewPager.setAdapter(ca);
                         merChantListView.addHeaderView(viewPager);
-                        merChantListView.addHeaderView(inflater.inflate(R.layout.homefragment_layout,null));
+                        merChantListView.addHeaderView(inflater.inflate(R.layout.homefragment_layout, null));
                         isStart = true;
                         t = new MyThreads();
                         t.start();

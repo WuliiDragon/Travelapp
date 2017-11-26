@@ -4,11 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-
 import java.util.ArrayList;
 
 /**
- *
  * @author dragon
  * @date 2017/11/22
  */

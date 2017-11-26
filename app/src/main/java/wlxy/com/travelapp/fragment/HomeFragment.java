@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +38,7 @@ import wlxy.com.travelapp.utils.utils;
  * @author dragon
  */
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
     private ListView merChantListView;
     private final int RIGHTSTATUS = 200;
     private ArrayList<MerChantModel> merChantModelList;
@@ -59,12 +57,13 @@ public class HomeFragment extends Fragment {
         View view_page = inflater.inflate(R.layout.view_page, container, false);
         viewPager = (ViewPager) view_page.findViewById(R.id.vp);
         //初始化轮播图
-        new HomeCarouselImg(viewPager, merChantListView, getActivity(),inflater).init();
+        new HomeCarouselImg(viewPager, merChantListView, getActivity(), inflater).init();
         //listView设置点击事件
         merChantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MerChantModel info = merChantModelList.get(position - 2);
+
+                MerChantModel info = merChantModelList.get(position - merChantListView.getHeaderViewsCount());
                 Bundle bundle = new Bundle();
                 bundle.putString("bid", info.getBid());
                 Intent intent = new Intent(getActivity(), MerChantDetailActivity.class);
@@ -102,6 +101,11 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.TAG = "HomeFragment";
+    }
 
 
 }

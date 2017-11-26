@@ -3,23 +3,22 @@ package wlxy.com.travelapp.main;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
 
 import wlxy.com.travelapp.R;
-import wlxy.com.travelapp.fragment.MineFragment;
 import wlxy.com.travelapp.utils.AppController;
 import wlxy.com.travelapp.utils.utils;
 
@@ -27,13 +26,13 @@ import wlxy.com.travelapp.utils.utils;
  * Created by guardian on 2017/11/22.
  */
 
-public class UserCenterActivity extends AppCompatActivity implements View.OnClickListener {
+public class UserCenterActivity extends BaseActivity implements View.OnClickListener {
     private NetworkImageView User_center_image;
     private TextView User_center_name;
     private TextView User_center_phone;
     private TextView User_center_sex;
     private Button User_center_loginout;
-    private ImageView User_center_back;
+    private Button User_center_back;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -41,13 +40,14 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.user_center);
+        this.TAG = "UserCenterActivity";
 
         User_center_image = (NetworkImageView) findViewById(R.id.user_center_image);
         User_center_name = (TextView) findViewById(R.id.user_center_name);
         User_center_phone = (TextView) findViewById(R.id.user_center_phone);
         User_center_sex = (TextView) findViewById(R.id.user_center_sex);
         User_center_loginout = (Button) findViewById(R.id.user_center_loginout);
-        User_center_back= (ImageView) findViewById(R.id.user_center_back);
+        User_center_back = (Button) findViewById(R.id.user_center_back);
 
         getInfoFromLocal();
 
@@ -56,6 +56,17 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
         User_center_phone.setOnClickListener(this);
         User_center_loginout.setOnClickListener(this);
         User_center_back.setOnClickListener(this);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+            //给状态栏设置颜色。我设置透明。
+            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setNavigationBarColor(Color.TRANSPARENT);
+        }
 
 
     }
@@ -81,6 +92,7 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
 
@@ -175,9 +187,10 @@ public class UserCenterActivity extends AppCompatActivity implements View.OnClic
 
             }
             break;
-            case  R.id.user_center_back:{
-                Intent intent=new Intent(UserCenterActivity.this,HomeActivity.class);
+            case R.id.user_center_back: {
+                Intent intent = new Intent(UserCenterActivity.this, HomeActivity.class);
                 startActivity(intent);
+                finish();
 
             }
             break;

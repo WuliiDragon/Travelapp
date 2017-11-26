@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:background="#10ce8f"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@color/titlecolor"
+        android:minHeight="60dp">
 
-        <ImageView
+        <Button
             android:id="@+id/user_center_back"
-            android:layout_marginLeft="10dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/lifteback" />
+            android:layout_marginTop="30dp"
+            android:background="@drawable/back_home" />
 
         <TextView
             android:id="@+id/user_center_title"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
             android:gravity="center"
             android:text="个人资料"
             android:textColor="#fafafa"
-            android:textSize="20dp" />
-    </RelativeLayout>
+            android:textSize="20dp"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -58,13 +61,13 @@
                 android:textSize="15dp" />
 
             <com.android.volley.toolbox.NetworkImageView
-                android:layout_marginRight="5dp"
                 android:id="@+id/user_center_image"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp" />
         </RelativeLayout>
 
         <LinearLayout
@@ -83,15 +86,17 @@
                 android:src="@drawable/icongo" />
         </LinearLayout>
     </LinearLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:background="#e9e0e0"
         tools:alpha="0.4" />
+
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -113,16 +118,16 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:layout_marginRight="5dp"
                 android:id="@+id/user_center_name"
-                android:gravity="center"
-                android:text="99999999999"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layoutDirection="rtl" />
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:text="99999999999" />
         </RelativeLayout>
 
         <LinearLayout
@@ -141,15 +146,17 @@
                 android:src="@drawable/icongo" />
         </LinearLayout>
     </LinearLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#e9e0e0"
         tools:alpha="0.4" />
+
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -171,16 +178,16 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:layout_marginRight="5dp"
                 android:id="@+id/user_center_phone"
-                android:gravity="center"
-                android:text="99999999999"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layoutDirection="rtl" />
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:text="99999999999" />
         </RelativeLayout>
 
         <LinearLayout
@@ -199,15 +206,17 @@
                 android:src="@drawable/icongo" />
         </LinearLayout>
     </LinearLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#e9e0e0"
         tools:alpha="0.4" />
+
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -229,16 +238,16 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:layout_marginRight="5dp"
                 android:id="@+id/user_center_sex"
-                android:gravity="center"
-                android:text="99999999999"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layoutDirection="rtl" />
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:text="99999999999" />
         </RelativeLayout>
 
         <LinearLayout
@@ -257,6 +266,7 @@
                 android:src="@drawable/icongo" />
         </LinearLayout>
     </LinearLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -264,10 +274,10 @@
         tools:alpha="0.4" />
 
     <Button
-        android:layout_marginTop="20dp"
         android:id="@+id/user_center_loginout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:text="退出登录" />
 
 </LinearLayout>

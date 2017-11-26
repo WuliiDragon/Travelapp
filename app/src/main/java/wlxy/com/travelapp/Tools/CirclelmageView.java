@@ -26,7 +26,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 
-
 import wlxy.com.travelapp.R;
 
 class CircleImageView extends android.support.v7.widget.AppCompatImageView {
@@ -397,7 +396,7 @@ class CircleImageView extends android.support.v7.widget.AppCompatImageView {
     }
 
     private RectF calculateBounds() {
-        int availableWidth  = getWidth() - getPaddingLeft() - getPaddingRight();
+        int availableWidth = getWidth() - getPaddingLeft() - getPaddingRight();
         int availableHeight = getHeight() - getPaddingTop() - getPaddingBottom();
 
         int sideLength = Math.min(availableWidth, availableHeight);

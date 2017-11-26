@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by WLW on 2017/11/22.
  */
 
-public class TicketModel implements Serializable{
+public class TicketModel implements Serializable {
     private String tid;
     private String bid;
     private String price;
