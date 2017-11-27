@@ -1,15 +1,18 @@
 package wlxy.com.travelapp.main;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.NetworkImageView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +36,7 @@ public class OrderActivity extends BaseActivity {
     private TextView orderBid;
     private TextView orderTotalprice;
     private Button orderPay;
+    private ImageView orderBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class OrderActivity extends BaseActivity {
         orderBid = (TextView) findViewById(R.id.order_bid);
         orderTotalprice = (TextView) findViewById(R.id.order_totalprice);
         orderPay = (Button) findViewById(R.id.order_pay);
-
+        orderBack= (ImageView) findViewById(R.id.order_back);
 
         orderOid.setText(getIntent().getStringExtra("oid"));
         orderStatus.setText(getIntent().getStringExtra("status"));
@@ -61,13 +65,11 @@ public class OrderActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-
                 StringBuffer sb = new StringBuffer();
                 sb.append("?oid=" + getIntent().getStringExtra("oid"));
                 sb.append("&uid=" + sharedPreferences.getString("uid", ""));
                 sb.append("&phone=" + sharedPreferences.getString("phone", ""));
                 sb.append("&token=" + sharedPreferences.getString("token", ""));
-
                 HttpUtils request = new HttpUtils(utils.BASE + "/order/payOrder.action" + sb.toString(), null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -90,6 +92,14 @@ public class OrderActivity extends BaseActivity {
                     }
                 });
                 AppController.getInstance().addToRequestQueue(request);
+            }
+        });
+
+        orderBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(OrderActivity.this,MerChantDetailActivity.class);
+                startActivity(intent);
             }
         });
     }

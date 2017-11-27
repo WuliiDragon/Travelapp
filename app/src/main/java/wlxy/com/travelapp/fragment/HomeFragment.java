@@ -1,6 +1,7 @@
 package wlxy.com.travelapp.fragment;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.MerChantAdapter;
 import wlxy.com.travelapp.main.MerChantDetailActivity;
+import wlxy.com.travelapp.main.RegisterActivity;
 import wlxy.com.travelapp.model.MerChantModel;
 import wlxy.com.travelapp.utils.AppController;
 import wlxy.com.travelapp.utils.HomeCarouselImg;
@@ -44,12 +46,16 @@ public class HomeFragment extends BaseFragment {
     private ArrayList<MerChantModel> merChantModelList;
     private MerChantAdapter merChantAdapter;
     private ViewPager viewPager;
+    private ProgressDialog progressDialog;
+
 
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_layout, container, false);
-
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("加载中");
+        progressDialog.setCanceledOnTouchOutside(false);
         merChantListView = (ListView) view.findViewById(R.id.merchant_listView);
         merChantModelList = new ArrayList<MerChantModel>();
         merChantAdapter = new MerChantAdapter(getActivity(), R.layout.item_merchant, merChantModelList);
@@ -71,6 +77,7 @@ public class HomeFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
+        progressDialog.show();
         //获取listView数据
         HttpUtils httpUtils = new HttpUtils(utils.BASE + "/business/findAll.action", null, new Response.Listener<JSONObject>() {
             @Override
@@ -84,6 +91,7 @@ public class HomeFragment extends BaseFragment {
                             JSONObject item = (JSONObject) list.get(i);
                             MerChantModel merChantModel = JSON.parseObject(item.toString(), MerChantModel.class);
                             merChantModelList.add(merChantModel);
+                            progressDialog.dismiss();
                         }
                         merChantAdapter.notifyDataSetChanged();
                     }

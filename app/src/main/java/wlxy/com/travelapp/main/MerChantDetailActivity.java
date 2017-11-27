@@ -1,5 +1,6 @@
 package wlxy.com.travelapp.main;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -59,7 +60,7 @@ public class MerChantDetailActivity extends BaseActivity {
     private ArrayList<Fragment> fragmentList;
     private MerChantDetailAdapter merChantDetailAdapter;
 
-
+    private ProgressDialog progressDialog;
     private Toolbar toolbar;
 
     @Override
@@ -69,6 +70,10 @@ public class MerChantDetailActivity extends BaseActivity {
         bid = intent.getStringExtra("bid");
         setContentView(R.layout.merchant_detail_layout);
         this.TAG = "MerChantDetailActivity";
+
+        progressDialog = new ProgressDialog(MerChantDetailActivity.this);
+        progressDialog.setMessage("加载中");
+        progressDialog.setCanceledOnTouchOutside(false);
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -128,7 +133,12 @@ public class MerChantDetailActivity extends BaseActivity {
                 sb.append("&phone=" + sharedPreferences.getString("phone", ""));
                 sb.append("&token=" + sharedPreferences.getString("token", ""));
                 sb.append("&bid=" + bid);
-
+                progressDialog.show();
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 HttpUtils request = new HttpUtils(Request.Method.POST, utils.BASE + "/order/createOrder.action?" + sb.toString(), null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -148,6 +158,7 @@ public class MerChantDetailActivity extends BaseActivity {
                                 intent.putExtra("uid", order.getString("uid"));
                                 intent.putExtra("bid", order.getString("bid"));
                                 intent.putExtra("totalprice", order.getString("totalprice"));
+                                progressDialog.dismiss();
                                 startActivity(intent);
 
                             } else {
@@ -189,7 +200,7 @@ public class MerChantDetailActivity extends BaseActivity {
         tabBarTitle.setTabMode(TabLayout.MODE_FIXED);
         CarouseVp = (ViewPager) findViewById(R.id.CarouseVp);
         new BusinessCarouselImg(CarouseVp, this, bid).init();
-
+        progressDialog.show();
         HttpUtils request = new HttpUtils(utils.BASE + "/business/findById.action?bid=" + bid, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -212,8 +223,10 @@ public class MerChantDetailActivity extends BaseActivity {
                         String msg = response.getString("msg");
                         Toast.makeText(MerChantDetailActivity.this, msg, Toast.LENGTH_LONG).show();
                     }
+                    progressDialog.hide();
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressDialog.hide();
                 }
 
             }
@@ -221,6 +234,7 @@ public class MerChantDetailActivity extends BaseActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(MerChantDetailActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                progressDialog.hide();
             }
         });
 

@@ -1,5 +1,6 @@
 package wlxy.com.travelapp.main;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private Button registerBtn;
     private String returnCode;
     private ImageView registerback;
+    private ProgressDialog progressDialog;
 
     private String REGISTERURL = utils.BASE + "/user/regist.action";
     private String CODEURL = utils.BASE + "/SendMessage/registCode.action";
@@ -77,6 +79,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         sendVerificationCodeBtn.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
         registerback.setOnClickListener(this);
+        progressDialog = new ProgressDialog(RegisterActivity.this);
+        progressDialog.setMessage("注册中");
+        progressDialog.setCanceledOnTouchOutside(false);
 
     }
 
@@ -89,7 +94,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     Toast.makeText(this, "手机号不能为空", Toast.LENGTH_SHORT).show();
                 } else {
                     String codeurl = CODEURL + "?to=" + phoneNumberInput.getText().toString();
-
+                    progressDialog.show();
                     HttpUtils httpUtils = new HttpUtils
                             (Request.Method.GET, codeurl, null, new Response.Listener<JSONObject>() {
                                 @Override
@@ -100,6 +105,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                             returnCode = response.getString("data");
                                             sendVerificationCodeBtn.setClickable(false);
                                             timer.start();
+                                            progressDialog.dismiss();
                                         } else {
                                             String msg = response.getString("msg");
                                             Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
@@ -140,6 +146,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     Toast.makeText(this, "两次密码输入不相同", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
+                    progressDialog.show();
                     Map<String, String> par = new HashMap<String, String>(2);
                     par.put("phone", phoneNumberInput.getText().toString());
                     par.put("pass", passInput.getText().toString());
@@ -169,6 +176,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                     editor.putString("pass", passInput.getText().toString());
 
                                     editor.commit();
+                                    progressDialog.dismiss();
                                     Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                                     startActivity(intent);
 

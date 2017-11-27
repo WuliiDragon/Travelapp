@@ -1,5 +1,6 @@
 package wlxy.com.travelapp.main;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText phoneNumber;
     private EditText passWordInput;
     private Button turnToRegister;
+    private ProgressDialog progressDialog;
 
     public static final String BASE_URL = utils.BASE + "/user/login.action";
 
@@ -49,6 +51,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         loginBtn.setOnClickListener(this);
         turnToRegister.setOnClickListener(this);
+
+        progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog.setMessage("登录中");
+        progressDialog.setCanceledOnTouchOutside(false);
     }
 
     @Override
@@ -59,6 +65,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     Toast.makeText(LoginActivity.this, "账号或者密码长度不正确", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                progressDialog.show();
 
                 String url = BASE_URL + "?phone=" + phoneNumber.getText().toString() + "&pass=" + passWordInput.getText().toString();
                 HttpUtils httpUtils = new HttpUtils
@@ -83,7 +90,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                         editor.putString("headImgPath", data.getString("headImgPath"));
 
                                         editor.commit();
-
+                                        progressDialog.dismiss();
                                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                         startActivity(intent);
                                         finish();

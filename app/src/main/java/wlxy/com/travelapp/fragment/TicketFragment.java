@@ -21,7 +21,6 @@ import wlxy.com.travelapp.model.TicketModel;
 
 public class TicketFragment extends BaseFragment implements TicketAdapter.btnCallback {
     private ListView ticketListView;
-    private ListView merChantListView;
     private final int RIGHTSTATUS = 200;
     private ArrayList<TicketModel> ticketModelList;
     private TicketAdapter ticketAdapter;
