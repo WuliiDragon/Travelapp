@@ -15,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -30,6 +32,7 @@ import java.util.ArrayList;
 
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.MerChantDetailAdapter;
+import wlxy.com.travelapp.fragment.HomeFragment;
 import wlxy.com.travelapp.fragment.MineFragment;
 import wlxy.com.travelapp.fragment.TicketFragment;
 import wlxy.com.travelapp.model.TicketModel;
@@ -50,6 +53,7 @@ public class MerChantDetailActivity extends BaseActivity {
     private ViewPager CarouseVp;
     private String bid;
     private ArrayList<TicketModel> ticketModelList;
+    private Button merChantDetailback;
 
     private ArrayList<String> titleList = new ArrayList<String>() {{
         add("门票");
@@ -74,6 +78,17 @@ public class MerChantDetailActivity extends BaseActivity {
         progressDialog = new ProgressDialog(MerChantDetailActivity.this);
         progressDialog.setMessage("加载中");
         progressDialog.setCanceledOnTouchOutside(false);
+
+
+        merChantDetailback=(Button)findViewById(R.id.merChantDetail_back);
+
+        merChantDetailback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(MerChantDetailActivity.this, HomeFragment.class);
+                startActivity(intent1);
+            }
+        });
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -134,11 +149,7 @@ public class MerChantDetailActivity extends BaseActivity {
                 sb.append("&token=" + sharedPreferences.getString("token", ""));
                 sb.append("&bid=" + bid);
                 progressDialog.show();
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 HttpUtils request = new HttpUtils(Request.Method.POST, utils.BASE + "/order/createOrder.action?" + sb.toString(), null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -153,7 +164,7 @@ public class MerChantDetailActivity extends BaseActivity {
 
                                 intent.putExtra("oid", order.getString("oid"));
                                 intent.putExtra("status", order.getString("status"));
-                                intent.putExtra("createTime", order.getString("createTime"));
+                                intent.putExtra("signinTime", order.getString("signinTime"));
                                 intent.putExtra("payTime", order.getString("payTime"));
                                 intent.putExtra("uid", order.getString("uid"));
                                 intent.putExtra("bid", order.getString("bid"));

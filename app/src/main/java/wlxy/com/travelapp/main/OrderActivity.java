@@ -17,6 +17,10 @@ import com.android.volley.toolbox.NetworkImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.utils.AppController;
 import wlxy.com.travelapp.utils.HttpUtils;
@@ -37,6 +41,9 @@ public class OrderActivity extends BaseActivity {
     private TextView orderTotalprice;
     private Button orderPay;
     private ImageView orderBack;
+    private String OrderCreateTime;
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,14 +59,19 @@ public class OrderActivity extends BaseActivity {
         orderBid = (TextView) findViewById(R.id.order_bid);
         orderTotalprice = (TextView) findViewById(R.id.order_totalprice);
         orderPay = (Button) findViewById(R.id.order_pay);
-        orderBack= (ImageView) findViewById(R.id.order_back);
+        orderBack = (ImageView) findViewById(R.id.order_back);
 
         orderOid.setText(getIntent().getStringExtra("oid"));
         orderStatus.setText(getIntent().getStringExtra("status"));
-        orderCreateTime.setText(getIntent().getStringExtra("createTime"));
+//        orderCreateTime.setText(getIntent().getStringExtra("createTime"));
         orderUid.setText(getIntent().getStringExtra("uid"));
         orderBid.setText(getIntent().getStringExtra("bid"));
         orderTotalprice.setText(getIntent().getStringExtra("totalprice"));
+
+        sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+        OrderCreateTime = sharedPreferences.getString("signinTime", "");
+        msDate(OrderCreateTime);
+        orderCreateTime.setText(msDate(OrderCreateTime));
 
         orderPay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,9 +110,18 @@ public class OrderActivity extends BaseActivity {
         orderBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(OrderActivity.this,MerChantDetailActivity.class);
+                Intent intent = new Intent(OrderActivity.this, MerChantDetailActivity.class);
                 startActivity(intent);
             }
         });
     }
+
+
+    public static String msDate(String _ms) {
+        Date date = new Date(_ms);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return format.format(date);
+    }
+
+
 }
