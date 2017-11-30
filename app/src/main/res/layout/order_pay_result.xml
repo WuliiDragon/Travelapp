@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theGray">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/titlecolor"
+        android:minHeight="70dp">
+
+        <Button
+            android:id="@+id/order_back"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/back_home" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/whitebg"
+        app:layout_constraintStart_toStartOf="@+id/whitebg"
+        app:layout_constraintTop_toBottomOf="@+id/pay_res_lab"
+        app:srcCompat="@android:color/background_dark" />
+
+    <ImageView
+        android:id="@+id/whitebg"
+        android:layout_width="369dp"
+        android:layout_height="583dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/thewhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@color/thewhite" />
+
+    <Button
+        android:id="@+id/turn_order"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="216dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="44dp"
+        android:background="@color/colorAccent"
+        android:text="查看订单"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="@+id/whitebg"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/pay_res_img"
+        android:layout_width="83dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/whitebg"
+        app:srcCompat="@drawable/haspayed" />
+
+    <TextView
+        android:id="@+id/pay_res_lab"
+        android:layout_width="74dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
+        android:text="支付结果"
+        android:textAlignment="center"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pay_res_img" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -13,7 +13,7 @@
 
         <activity
             android:name=".main.HomeActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,8 +30,10 @@
         <activity
             android:name=".main.MerChantDetailActivity"
             android:launchMode="singleTask"></activity>
-        <activity android:name=".Tools.QRcode"></activity>
+        <activity android:name=".tools.QRcode"></activity>
         <activity android:name=".main.OrderActivity"></activity>
+        <activity android:name=".main.OrderResActivity"></activity>
+        <activity android:name=".main.MineOrderActivity"></activity>
 
     </application>
 

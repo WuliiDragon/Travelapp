@@ -101,7 +101,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                 public void onResponse(JSONObject response) {
                                     try {
                                         int status = response.getInt("status");
-                                        if (status == 200) {
+                                        if (status == utils.RIGHTSTATUS) {
                                             returnCode = response.getString("data");
                                             sendVerificationCodeBtn.setClickable(false);
                                             timer.start();
@@ -116,6 +116,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                     }
                                 }
                             }, new Response.ErrorListener() {
+                                @Override
                                 public void onErrorResponse(VolleyError error) {
                                     Toast.makeText(RegisterActivity.this, "服务器错误", Toast.LENGTH_SHORT).show();
                                 }
@@ -191,6 +192,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             }
                         }
                     }, new Response.ErrorListener() {
+                        @Override
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(RegisterActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
                         }

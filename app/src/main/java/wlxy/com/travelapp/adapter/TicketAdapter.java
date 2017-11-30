@@ -16,19 +16,22 @@ import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.model.TicketModel;
 
 /**
- * Created by WLW on 2017/11/22.
+ *
+ * @author dragon
+ * @date 2017/11/22
+ * @describe 票的ListView适配器
  */
 
 public class TicketAdapter extends ArrayAdapter<TicketModel> implements View.OnClickListener {
     private ArrayList<TicketModel> data;
     private int viewId;
-    private btnCallback mCallback;
+    private opCallBack mCallback;
 
-    public interface btnCallback {
+    public interface opCallBack {
         public void click(View v);
     }
 
-    public TicketAdapter(Context context, int viewId, ArrayList<TicketModel> data, btnCallback btnCallback) {
+    public TicketAdapter(Context context, int viewId, ArrayList<TicketModel> data, opCallBack btnCallback) {
         super(context, viewId, data);
         this.data = data;
         this.viewId = viewId;

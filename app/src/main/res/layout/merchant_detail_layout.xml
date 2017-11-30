@@ -10,17 +10,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/titlecolor"
-        android:minHeight="60dp">
+
+        android:minHeight="70dp">
 
         <Button
             android:id="@+id/merChantDetail_back"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/back_home" />
 
+        <!--<TextView-->
+            <!--android:id="@+id/textView"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="40dp"-->
+            <!--android:text="景区详情"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textStyle="bold" />-->
+
+
     </android.support.v7.widget.Toolbar>
+
 
     <LinearLayout
         android:layout_width="match_parent"

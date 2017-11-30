@@ -26,12 +26,13 @@ import java.util.ArrayList;
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.MerChantAdapter;
 import wlxy.com.travelapp.main.MerChantDetailActivity;
-import wlxy.com.travelapp.main.RegisterActivity;
 import wlxy.com.travelapp.model.MerChantModel;
 import wlxy.com.travelapp.utils.AppController;
 import wlxy.com.travelapp.utils.HomeCarouselImg;
 import wlxy.com.travelapp.utils.HttpUtils;
 import wlxy.com.travelapp.utils.utils;
+
+import static wlxy.com.travelapp.utils.utils.RIGHTSTATUS;
 
 /**
  * Created by WLW on 2017/11/17.
@@ -42,7 +43,6 @@ import wlxy.com.travelapp.utils.utils;
 
 public class HomeFragment extends BaseFragment {
     private ListView merChantListView;
-    private final int RIGHTSTATUS = 200;
     private ArrayList<MerChantModel> merChantModelList;
     private MerChantAdapter merChantAdapter;
     private ViewPager viewPager;

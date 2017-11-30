@@ -1,4 +1,4 @@
-package wlxy.com.travelapp.Tools;
+package wlxy.com.travelapp.tools;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;

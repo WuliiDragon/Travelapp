@@ -97,7 +97,7 @@ public class UserCenterActivity extends BaseActivity implements View.OnClickList
         switch (view.getId()) {
 
             case R.id.user_center_sex: {
-                final String items[] = new String[]{"女", "男"};
+                final String[] items = new String[]{"女", "男"};
                 AlertDialog dialog = new AlertDialog.Builder(this).setTitle("性别").setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

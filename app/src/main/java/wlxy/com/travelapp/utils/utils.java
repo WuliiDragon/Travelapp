@@ -16,6 +16,9 @@ import java.util.Map;
 public class utils {
     public final static String BASE = "http://172.16.120.129:8080";
     public final static String DefImg = "/defImg.jpg";
+    public final static int RIGHTSTATUS = 200;
+
+
 
     public static boolean isNullOrEmpty(Object obj) {
         if (obj == null) {

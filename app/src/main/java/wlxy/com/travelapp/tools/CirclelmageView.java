@@ -1,4 +1,4 @@
-package wlxy.com.travelapp.Tools;
+package wlxy.com.travelapp.tools;
 
 import android.content.Context;
 import android.content.res.TypedArray;

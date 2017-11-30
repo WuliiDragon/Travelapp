@@ -74,7 +74,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             public void onResponse(JSONObject response) {
                                 try {
                                     int status = response.getInt("status");
-                                    if (status == 200) {
+                                    if (status == utils.RIGHTSTATUS) {
 
                                         JSONObject data = response.getJSONObject("data");
                                         SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
@@ -104,6 +104,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 }
                             }
                         }, new Response.ErrorListener() {
+                            @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast.makeText(LoginActivity.this, "服务器错误", Toast.LENGTH_SHORT).show();
                             }

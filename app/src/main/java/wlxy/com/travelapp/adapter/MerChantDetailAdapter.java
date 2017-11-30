@@ -9,6 +9,7 @@ import java.util.ArrayList;
 /**
  * @author dragon
  * @date 2017/11/22
+ * @describe 首页碎片适配器
  */
 
 public class MerChantDetailAdapter extends FragmentPagerAdapter {

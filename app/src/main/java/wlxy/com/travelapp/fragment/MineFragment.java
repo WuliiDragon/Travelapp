@@ -10,12 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
 
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.main.LoginActivity;
+import wlxy.com.travelapp.main.MineOrderActivity;
 import wlxy.com.travelapp.main.UserCenterActivity;
 import wlxy.com.travelapp.utils.AppController;
 import wlxy.com.travelapp.utils.utils;
@@ -34,6 +36,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private TextView userName;
     private Button loginOut;
     private SharedPreferences sharedPreferences;
+    private LinearLayout mineOrderLayout;
 
     @Override
     public void onAttach(Context context) {
@@ -46,6 +49,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.mine_layout, container, false);
         userImage = (NetworkImageView) view.findViewById(R.id.user_image);
         userName = (TextView) view.findViewById(R.id.user_name);
+        mineOrderLayout = (LinearLayout) view.findViewById(R.id.mine_order);
+        mineOrderLayout.setOnClickListener(this);
         userImage.setOnClickListener(this);
         getInfoFromLocal();
         return view;
@@ -76,6 +81,16 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     Intent intent = new Intent(getActivity(), UserCenterActivity.class);
                     startActivity(intent);
                 }
+            }
+            break;
+
+
+            case R.id.mine_order: {
+
+                Intent intent = new Intent(getActivity(), MineOrderActivity.class);
+                startActivity(intent);
+
+
             }
             break;
         }

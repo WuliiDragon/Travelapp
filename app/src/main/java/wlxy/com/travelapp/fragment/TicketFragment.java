@@ -19,7 +19,7 @@ import wlxy.com.travelapp.model.TicketModel;
  * @date 2017/11/22
  */
 
-public class TicketFragment extends BaseFragment implements TicketAdapter.btnCallback {
+public class TicketFragment extends BaseFragment implements TicketAdapter.opCallBack {
     private ListView ticketListView;
     private final int RIGHTSTATUS = 200;
     private ArrayList<TicketModel> ticketModelList;

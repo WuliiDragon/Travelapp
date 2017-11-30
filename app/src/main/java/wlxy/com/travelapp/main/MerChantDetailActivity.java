@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -80,12 +79,12 @@ public class MerChantDetailActivity extends BaseActivity {
         progressDialog.setCanceledOnTouchOutside(false);
 
 
-        merChantDetailback=(Button)findViewById(R.id.merChantDetail_back);
+        merChantDetailback = (Button) findViewById(R.id.merChantDetail_back);
 
         merChantDetailback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(MerChantDetailActivity.this, HomeFragment.class);
+                Intent intent1 = new Intent(MerChantDetailActivity.this, HomeFragment.class);
                 startActivity(intent1);
             }
         });
@@ -125,13 +124,16 @@ public class MerChantDetailActivity extends BaseActivity {
                 }
                 if (orderModelArrayList.size() == 0) {
                     Toast.makeText(MerChantDetailActivity.this, "您还未选择任何门票哦！", Toast.LENGTH_LONG).show();
+                    progressDialog.hide();
                     return;
                 }
 
                 SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-                if (sharedPreferences.getString("token", "").equals("null") || sharedPreferences.getString("token", "").equals("")) {
+                if ("null".equals(sharedPreferences.getString("token", "")) || "".equals(sharedPreferences.getString("token", ""))) {
+                    progressDialog.hide();
                     Intent intent = new Intent(MerChantDetailActivity.this, LoginActivity.class);
                     startActivity(intent);
+
                     return;
                 }
 
@@ -154,8 +156,8 @@ public class MerChantDetailActivity extends BaseActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            String status = response.getString("status");
-                            if (status.equals("200")) {
+                            int status = response.getInt("status");
+                            if (status == utils.RIGHTSTATUS) {
                                 JSONObject data = response.getJSONObject("data");
                                 JSONObject order = data.getJSONObject("order");
 
@@ -164,12 +166,11 @@ public class MerChantDetailActivity extends BaseActivity {
 
                                 intent.putExtra("oid", order.getString("oid"));
                                 intent.putExtra("status", order.getString("status"));
-                                intent.putExtra("signinTime", order.getString("signinTime"));
+                                intent.putExtra("createTime", order.getString("createTime"));
                                 intent.putExtra("payTime", order.getString("payTime"));
                                 intent.putExtra("uid", order.getString("uid"));
                                 intent.putExtra("bid", order.getString("bid"));
                                 intent.putExtra("totalprice", order.getString("totalprice"));
-                                progressDialog.dismiss();
                                 startActivity(intent);
 
                             } else {
@@ -179,12 +180,15 @@ public class MerChantDetailActivity extends BaseActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        progressDialog.hide();
 
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(MerChantDetailActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                        progressDialog.hide();
+
                     }
                 });
 
@@ -216,8 +220,8 @@ public class MerChantDetailActivity extends BaseActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    String status = response.getString("status");
-                    if (status.equals("200")) {
+                    int status = response.getInt("status");
+                    if (status == utils.RIGHTSTATUS) {
                         JSONObject data = response.getJSONObject("data");
                         JSONArray ticket = data.getJSONArray("ticket");
 
@@ -234,11 +238,11 @@ public class MerChantDetailActivity extends BaseActivity {
                         String msg = response.getString("msg");
                         Toast.makeText(MerChantDetailActivity.this, msg, Toast.LENGTH_LONG).show();
                     }
-                    progressDialog.hide();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    progressDialog.hide();
                 }
+                progressDialog.hide();
+
 
             }
         }, new Response.ErrorListener() {

@@ -13,6 +13,15 @@ public class MerChantModel {
     private String bid;
     private String latitude;
     private String longitude;
+    private String minPrice;
+
+    public String getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(String minPrice) {
+        this.minPrice = minPrice;
+    }
 
     public String getBid() {
         return bid;

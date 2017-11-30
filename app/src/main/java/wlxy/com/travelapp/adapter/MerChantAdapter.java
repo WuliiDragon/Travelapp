@@ -17,7 +17,8 @@ import wlxy.com.travelapp.utils.AppController;
 import wlxy.com.travelapp.utils.utils;
 
 /**
- * Created by DT on 2017/11/18.
+ * @author DT
+ * @date 2017/11/18
  */
 
 public class MerChantAdapter extends ArrayAdapter<MerChantModel> {
@@ -61,6 +62,7 @@ public class MerChantAdapter extends ArrayAdapter<MerChantModel> {
             viewHolder.level = (TextView) view.findViewById(R.id.merchant_level);
             viewHolder.adress = (TextView) view.findViewById(R.id.merchant_adress);
             viewHolder.image = (NetworkImageView) view.findViewById(R.id.merchant_img);
+            viewHolder.merchantMinPrice = (TextView) view.findViewById(R.id.merchant_price);
             view.setTag(viewHolder);
         } else {
             view = convertView;
@@ -73,6 +75,7 @@ public class MerChantAdapter extends ArrayAdapter<MerChantModel> {
         viewHolder.adress.setText(merChantModel.getAddress());
         viewHolder.bname.setText(merChantModel.getBname());
         viewHolder.level.setText(merChantModel.getLevel());
+        viewHolder.merchantMinPrice.setText(merChantModel.getMinPrice());
 
         return view;
     }
@@ -82,6 +85,7 @@ public class MerChantAdapter extends ArrayAdapter<MerChantModel> {
         public TextView bname;
         public TextView adress;
         public TextView level;
+        public TextView merchantMinPrice;
     }
 
 }

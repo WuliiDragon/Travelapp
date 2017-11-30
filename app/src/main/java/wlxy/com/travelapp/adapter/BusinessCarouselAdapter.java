@@ -9,6 +9,10 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+/**
+ * @author WLW
+ * @describe
+ */
 public class BusinessCarouselAdapter extends PagerAdapter {
     private List<ImageView> data;
     Context context;
