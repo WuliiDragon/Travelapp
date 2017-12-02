@@ -23,7 +23,8 @@ import wlxy.com.travelapp.utils.AppController;
 import wlxy.com.travelapp.utils.utils;
 
 /**
- * Created by guardian on 2017/11/22.
+ * @author guardian
+ * @date 2017/11/22
  */
 
 public class UserCenterActivity extends BaseActivity implements View.OnClickListener {

@@ -40,8 +40,8 @@
             <Button
                 android:id="@+id/ticket_plus"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
@@ -50,8 +50,8 @@
                 android:background="@drawable/btn_bg"
                 android:clickable="true"
                 android:elevation="0dp"
-                android:textColor="#ffffff"
-                android:text="+" />
+                android:text="+"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:id="@+id/ticket_count"
@@ -68,8 +68,8 @@
             <Button
                 android:id="@+id/ticket_reduce"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_alignTop="@+id/ticket_count"
                 android:layout_marginEnd="11dp"
                 android:layout_marginRight="11dp"
@@ -77,8 +77,8 @@
                 android:layout_toStartOf="@+id/ticket_count"
                 android:background="@drawable/btn_bg"
                 android:clickable="true"
-                android:textColor="#ffffff"
-                android:text="—" />
+                android:text="一"
+                android:textColor="#ffffff" />
 
         </RelativeLayout>
 

@@ -1,7 +1,6 @@
 package wlxy.com.travelapp.model;
 
 /**
- *
  * @author dragon
  * @date 2017/11/29
  */

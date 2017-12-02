@@ -4,15 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/fragment_content"
+    <ListView
+        android:id="@+id/ticket_detail_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:dividerHeight="2dp" />
 
-    <com.ashokvarma.bottomnavigation.BottomNavigationBar
-        android:id="@+id/navigation_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom" />
 </LinearLayout>

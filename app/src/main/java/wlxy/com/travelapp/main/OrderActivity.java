@@ -78,7 +78,22 @@ public class OrderActivity extends BaseActivity {
         orderBack = (Button) findViewById(R.id.order_back);
 
         orderOid.setText(getIntent().getStringExtra("oid"));
-        orderStatus.setText(getIntent().getStringExtra("status"));
+
+
+        if ("0".equals(getIntent().getStringExtra("status"))) {
+            orderStatus.setText("未付款");
+
+        }
+
+
+        if ("1".equals(getIntent().getStringExtra("status"))) {
+            orderStatus.setText("已支付");
+
+        }
+
+        if ("2".equals(getIntent().getStringExtra("status"))) {
+            orderStatus.setText("交易支付");
+        }
 
 
         SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
@@ -106,6 +121,7 @@ public class OrderActivity extends BaseActivity {
                             int status = response.getInt("status");
                             if (status == utils.RIGHTSTATUS) {
                                 Intent intent = new Intent(OrderActivity.this, OrderResActivity.class);
+                                intent.putExtra("oid", getIntent().getStringExtra("oid"));
                                 startActivity(intent);
                             } else {
 

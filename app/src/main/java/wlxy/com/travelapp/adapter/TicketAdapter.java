@@ -16,7 +16,6 @@ import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.model.TicketModel;
 
 /**
- *
  * @author dragon
  * @date 2017/11/22
  * @describe 票的ListView适配器

@@ -4,6 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/titlecolor"
+        android:minHeight="@dimen/toolbar_height">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/center_title_margin_top"
+            android:text="我的"
+            android:textColor="#ffff"
+            android:textSize="18sp" />
+    </android.support.v7.widget.Toolbar>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="10dp"

@@ -56,6 +56,8 @@ public class HomeFragment extends BaseFragment {
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("加载中");
         progressDialog.setCanceledOnTouchOutside(false);
+
+
         merChantListView = (ListView) view.findViewById(R.id.merchant_listView);
         merChantModelList = new ArrayList<MerChantModel>();
         merChantAdapter = new MerChantAdapter(getActivity(), R.layout.item_merchant, merChantModelList);

@@ -52,8 +52,8 @@ public class TicketFragment extends BaseFragment implements TicketAdapter.opCall
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ticketModelList = (ArrayList<TicketModel>) getArguments().getSerializable("ticketModelList");
 
-        View view = inflater.inflate(R.layout.home_layout, container, false);
-        ticketListView = (ListView) view.findViewById(R.id.merchant_listView);
+        View view = inflater.inflate(R.layout.ticket_detail_layout, container, false);
+        ticketListView = (ListView) view.findViewById(R.id.ticket_detail_listview);
 
         ticketAdapter = new TicketAdapter(getActivity(), R.layout.item_ticket, ticketModelList, this);
         ticketListView.setAdapter(ticketAdapter);

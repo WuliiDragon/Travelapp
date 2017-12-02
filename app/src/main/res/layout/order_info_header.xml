@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteY="25dp">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/mine_ticket_totalprice"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:text="14.44"
-        app:layout_constraintHorizontal_bias="0.218"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="75dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/mine_ticket_create_time"
+        app:layout_constraintTop_toBottomOf="@+id/mine_ticket_create_time" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/mine_ticket_create_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="1511852987000"
-        app:layout_constraintHorizontal_bias="0.267"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="47dp" />
+        app:layout_constraintStart_toStartOf="@+id/min_ticket_oid"
+        app:layout_constraintTop_toBottomOf="@+id/min_ticket_oid" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/min_ticket_oid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="fb6ebb727d8247e99a71ac7cd044af16"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="82dp" />
 </android.support.constraint.ConstraintLayout>

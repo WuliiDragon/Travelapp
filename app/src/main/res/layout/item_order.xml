@@ -7,16 +7,6 @@
     tools:layout_editor_absoluteY="25dp">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:text="门票"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/order_create_time"
         android:layout_width="181dp"
         android:layout_height="26dp"
@@ -26,7 +16,7 @@
         android:text="2017-11-11 12:11"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/icon_tick"
         app:layout_constraintTop_toBottomOf="@+id/order_name" />
 
     <TextView
@@ -39,7 +29,7 @@
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/icon_tick"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -67,8 +57,16 @@
         android:layout_marginEnd="12dp"
         android:text="未使用"
         android:textColor="#e78686"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/order_total_price"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/order_total_price" />
+
+    <ImageView
+        android:id="@+id/icon_tick"
+        android:layout_width="39dp"
+        android:layout_height="34dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ticket"
+        tools:layout_editor_absoluteX="3dp" />
 
 </android.support.constraint.ConstraintLayout>

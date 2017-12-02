@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import wlxy.com.travelapp.R;
 import wlxy.com.travelapp.adapter.MerChantDetailAdapter;
 import wlxy.com.travelapp.fragment.HomeFragment;
-import wlxy.com.travelapp.fragment.MineFragment;
 import wlxy.com.travelapp.fragment.TicketFragment;
 import wlxy.com.travelapp.model.TicketModel;
 import wlxy.com.travelapp.model.TicketOrderModel;
@@ -203,8 +202,8 @@ public class MerChantDetailActivity extends BaseActivity {
 
         fragmentList = new ArrayList<Fragment>() {{
             add(TicketFragment.newInstance(ticketModelList));
-            add(new MineFragment());
-            add(new MineFragment());
+            add(new Fragment());
+            add(new Fragment());
         }};
 
 
@@ -254,6 +253,5 @@ public class MerChantDetailActivity extends BaseActivity {
         });
 
         AppController.getInstance().addToRequestQueue(request);
-
     }
 }

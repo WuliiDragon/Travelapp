@@ -1,16 +1,17 @@
 package wlxy.com.travelapp.main;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import wlxy.com.travelapp.R;
 
 /**
- *
  * @author dragon
  * @date 2017/11/28
  * @describe 支付结果
@@ -18,6 +19,8 @@ import wlxy.com.travelapp.R;
 
 public class OrderResActivity extends BaseActivity {
 
+    private Button turnOrderDetail;
+    private String oid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,20 @@ public class OrderResActivity extends BaseActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
             window.setNavigationBarColor(Color.TRANSPARENT);
         }
+        oid = getIntent().getStringExtra("oid");
+
+        turnOrderDetail = (Button) findViewById(R.id.turn_to_order);
+
+
+        turnOrderDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrderResActivity.this, MineOrderInfoActivity.class);
+                intent.putExtra("oid", getIntent().getStringExtra("oid"));
+                startActivity(intent);
+
+            }
+        });
 
     }
 }

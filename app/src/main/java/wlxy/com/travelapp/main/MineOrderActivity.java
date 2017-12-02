@@ -1,5 +1,6 @@
 package wlxy.com.travelapp.main;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -8,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
@@ -108,7 +110,14 @@ public class MineOrderActivity extends BaseActivity {
             }
         });
         AppController.getInstance().addToRequestQueue(httpUtils);
-
+        orderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MineOrderActivity.this, MineOrderInfoActivity.class);
+                intent.putExtra("oid", mineOrderModelArrayList.get(position).getOid());
+                startActivity(intent);
+            }
+        });
 
         orderListViewRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -152,4 +161,3 @@ public class MineOrderActivity extends BaseActivity {
         });
     }
 }
-//http://172.16.120.129:8080/userTicket/findbyOid.action?oid=0be59dadc6184500ad6a40a5a9776a07

@@ -95,6 +95,7 @@ public class MineOrderAdapter extends ArrayAdapter<MineOrderModel> {
         return view;
     }
 
+
     class MineOrderViewHolders {
         public TextView orderCreateTime;
         public TextView orderTotalPrice;
