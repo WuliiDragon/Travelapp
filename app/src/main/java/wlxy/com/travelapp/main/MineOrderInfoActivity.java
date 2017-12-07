@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class MineOrderInfoActivity extends BaseActivity {
     private OrderInfoAdapter orderInfoAdapter;
     private ListView orderInfoListView;
     private ArrayList<UserTicketModel> userTicketModelArrayList;
+    private Button minorderback;
 
     @Override
 
@@ -64,6 +66,14 @@ public class MineOrderInfoActivity extends BaseActivity {
         orderInfoListView = (ListView) findViewById(R.id.order_info_list);
         orderInfoAdapter = new OrderInfoAdapter(MineOrderInfoActivity.this, R.layout.item_mine_ticket, userTicketModelArrayList);
         orderInfoListView.setAdapter(orderInfoAdapter);
+        minorderback= (Button) findViewById(R.id.mineOrderInfo_back);
+
+        minorderback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         //orderInfoListView.addHeaderView(getLayoutInflater().inflate(R.layout.order_info_header, null));

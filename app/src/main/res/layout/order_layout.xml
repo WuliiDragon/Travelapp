@@ -12,16 +12,6 @@
         android:background="@color/titlecolor"
         android:minHeight="@dimen/toolbar_height">
 
-        <Button
-            android:id="@+id/order_back"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="@dimen/center_title_margin_top"
-            android:background="@drawable/back_home" />
-
-
-
 
     </android.support.v7.widget.Toolbar>
     <RelativeLayout
@@ -29,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/order_header"
         android:layout_marginTop="110dp">
 
         <RelativeLayout
@@ -249,6 +238,19 @@
             android:layout_alignParentTop="true"
             android:background="#fe2e2e2e" />
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/order_back"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="23dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/back_home" />
 
 
 </RelativeLayout>

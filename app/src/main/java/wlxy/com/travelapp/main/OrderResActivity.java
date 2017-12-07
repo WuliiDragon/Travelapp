@@ -21,6 +21,7 @@ public class OrderResActivity extends BaseActivity {
 
     private Button turnOrderDetail;
     private String oid;
+    private Button payResultBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class OrderResActivity extends BaseActivity {
         oid = getIntent().getStringExtra("oid");
 
         turnOrderDetail = (Button) findViewById(R.id.turn_to_order);
+        payResultBack = (Button) findViewById(R.id.order_payresult_back);
 
 
         turnOrderDetail.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +50,12 @@ public class OrderResActivity extends BaseActivity {
                 intent.putExtra("oid", getIntent().getStringExtra("oid"));
                 startActivity(intent);
 
+            }
+        });
+        payResultBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

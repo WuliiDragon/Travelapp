@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
@@ -44,6 +45,7 @@ public class MineOrderActivity extends BaseActivity {
     private MineOrderAdapter mineOrderAdapter;
     private int currPageNum;
     private StringBuffer parSb;
+    private Button mineOrderback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,14 @@ public class MineOrderActivity extends BaseActivity {
 
         orderListViewRefresh = (SwipeRefreshLayout) findViewById(R.id.order_list_view_refresh);
         orderListView = (ListView) findViewById(R.id.order_list_view);
+        mineOrderback= (Button) findViewById(R.id.mineOrderBack);
+
+        mineOrderback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);

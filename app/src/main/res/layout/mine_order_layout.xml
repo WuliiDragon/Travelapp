@@ -12,7 +12,7 @@
         android:minHeight="@dimen/toolbar_height">
 
         <Button
-            android:id="@+id/merChantDetail_back"
+            android:id="@+id/mineOrderBack"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="20dp"
             android:layout_height="20dp"

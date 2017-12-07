@@ -83,8 +83,7 @@ public class MerChantDetailActivity extends BaseActivity {
         merChantDetailback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(MerChantDetailActivity.this, HomeFragment.class);
-                startActivity(intent1);
+               finish();
             }
         });
 

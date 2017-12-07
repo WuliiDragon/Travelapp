@@ -15,7 +15,7 @@
         android:minHeight="@dimen/toolbar_height">
 
         <Button
-            android:id="@+id/order_back"
+            android:id="@+id/order_payresult_back"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="20dp"
             android:layout_height="20dp"
